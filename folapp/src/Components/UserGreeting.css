@@ -1,0 +1,23 @@
+.greeting-section{
+    padding: .8rem 2rem 0 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.task-pill{
+    width: fit-content;
+    padding: .2rem 1.3rem;
+    border-radius: 16px;
+    background-color: #167B41;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--arabicFont);
+    color: #FAFAEACC;
+    font-size: 1rem;
+    font-weight: 300;
+}

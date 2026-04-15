@@ -3,8 +3,14 @@ import './Home.css';
 
 import Logo from '../Assets/logo.svg';
 import Nav from './../Components/Nav';
+import { User } from '@phosphor-icons/react';
+import UserGreeting from '../Components/UserGreeting';
 
 const Home = () => {
+
+    const userId = 1;
+
+
     return ( <>
     
 <main>
@@ -12,7 +18,7 @@ const Home = () => {
         <img src={Logo} alt="logo" />
     </section>
 
-    {/* Content goes here */}
+    <UserGreeting userId={userId} />
 
     <Nav /> 
 </main>

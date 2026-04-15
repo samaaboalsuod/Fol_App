@@ -1,0 +1,29 @@
+:root{
+    --lightText: #FAFAEA;
+    --darkText: #082F19;
+    --bgGradient: radial-gradient(50% 50% at 50% 50%, #0F3F24 0%, #082F19 100%);
+    --arabicFont: "Tajawal", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+body{
+    background: var(--bgGradient);
+    min-height: 100vh;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-x: hidden; /* Prevent horizontal jumping */
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}

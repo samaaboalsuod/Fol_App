@@ -2,14 +2,22 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     width: 100%;
-    height: 60px; /* Slightly taller for better thumb reach */
-    background-color: var(--transBg); /* Match your design's dark green */
+    height: 4rem;
+    background-color: var(--transBg); 
     border-radius: 16px 16px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     z-index: 100;
+
+    backdrop-filter: blur(15px);           /* The "frosty" look */
+    -webkit-backdrop-filter: blur(15px);   /* Safari support */
+    
+    /* 2. The Glass Border */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle highlight on top */
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }

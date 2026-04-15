@@ -14,7 +14,7 @@ const Nav = () => {
                 >
                     {({ isActive }) => (
                         <item.icon 
-                            size={24} 
+                            size={26} 
                             weight={isActive ? "fill" : "regular"} 
                             color="#F5F5DC" /* This matches your cream/beige icon color */
                         />

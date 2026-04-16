@@ -49,7 +49,6 @@ main {
     justify-content: flex-start;
     align-items: center;
 
-    /* background-color: rgba(0, 255, 255, 0.259); */
 }
 
 /* ONLY FOR PAGES TITLES  24 BOLD */
@@ -59,4 +58,11 @@ h1{
     font-size: 1.6rem;
     font-weight: 600;
 
+}
+
+h2{
+    font-family: var(--arabicFont);
+    color: var(--lightText);
+    font-size: 1.2rem;
+    font-weight: 400;
 }

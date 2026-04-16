@@ -5,6 +5,7 @@ import Logo from '../Assets/logo.svg';
 import Nav from './../Components/Nav';
 import { User } from '@phosphor-icons/react';
 import UserGreeting from '../Components/UserGreeting';
+import GardenHealth from './../Components/GardenHealth';
 
 const Home = () => {
 
@@ -19,6 +20,8 @@ const Home = () => {
     </section>
 
     <UserGreeting userId={userId} />
+
+    <GardenHealth userId={1} />
 
     <Nav /> 
 </main>

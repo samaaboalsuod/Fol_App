@@ -7,7 +7,7 @@ import { TrendUp } from "@phosphor-icons/react";
 import './GardenHealth.css';
 
 
-const GardenHealth = ({ userId = 1 }) => {
+const GardenHealth = ({ userId }) => {
     const [percentage, setPercentage] = useState(0);
 
     useEffect(() => {

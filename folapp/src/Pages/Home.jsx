@@ -12,6 +12,7 @@ import TaskCard from '../Components/TaskCard';
 import WarnCard from '../Components/WarnCard.jsx';
 import SectionTitle from '../Components/SectionTitle.jsx';
 import CommunityPost from '../Components/CommunityPost.jsx';
+import SuggestedCard from '../Components/SuggestedCard.jsx';
 
 const Home = () => {
 
@@ -19,56 +20,57 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     const [alerts, setAlerts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState(null);
+    const [suggestions, setSuggestions] = useState([]);
 
 useEffect(() => {
-        const fetchTasks = async () => {
-            const { data } = await supabase
-                .from('Plant_Activities')
-                .select(`
-                    id, Activity_Type, InstructionAR,
-                    User_Plants (
-                        Nickname,
-                        Plant ( NameAR, TaskPng )
-                    )
-                `)
-                .eq('Status', 'مجدول');
-            setTasks(data || []);
-        };
+    // 1. Create one master function to handle all fetching
+    const loadAllData = async () => {
+        try {
+            // Fetch Tasks
+            const { data: tasksData } = await supabase
+                .from('Plant_Activities')
+                .select(`
+                    id, Activity_Type, InstructionAR,
+                    User_Plants (
+                        Nickname,
+                        Plant ( NameAR, TaskPng )
+                    )
+                `)
+                .eq('Status', 'مجدول');
+            setTasks(tasksData || []);
 
-        const fetchAlerts = async () => {
-            const { data, error } = await supabase
-                .from('Plant_Alerts')
-                .select('*')
-                .eq('IsActive', true)
-                .order('created_at', { ascending: false });
+            // Fetch Alerts
+            const { data: alertsData } = await supabase
+                .from('Plant_Alerts')
+                .select('*')
+                .eq('IsActive', true)
+                .order('created_at', { ascending: false });
+            setAlerts(alertsData || []);
 
-            if (error) {
-                console.error('Error fetching alerts:', error);
-            } else {
-                setAlerts(data || []);
-            }
-        };
+            // Fetch Featured Community Post (ID: 2)
+            const { data: postData } = await supabase
+                .from('Community_Posts')
+                .select('*')
+                .eq('id', 2)
+                .single();
+            setFeaturedPost(postData);
 
-        const fetchFeaturedPost = async () => {
-        const { data, error } = await supabase
-            .from('Community_Posts')
-            .select('*')
-            .eq('id', 2) // Targeting the 2nd row (Sarah Mahmoud)
-            .single();
+            // Fetch Plant Suggestions
+            const { data: suggestionsData } = await supabase
+                .from('Plant_Suggestions')
+                .select('*')
+                .eq('id', 1);
+            setSuggestions(suggestionsData || []);
 
-        if (error) {
-            console.error('Error fetching post:', error);
-        } else {
-            setFeaturedPost(data);
+        } catch (error) {
+            console.error("Critical error loading Home data:", error);
         }
     };
 
-        // CALL BOTH FUNCTIONS HERE
-        fetchTasks();
-        fetchAlerts();
-        fetchFeaturedPost();
+    // 2. Execute the master function
+    loadAllData();
 
-    }, []);
+}, []);
 
     return ( <>
     
@@ -114,8 +116,15 @@ useEffect(() => {
         <CommunityPost data={featuredPost} />
     </section>
 
+    <section className='warnSec'>
+        <SectionTitle title="نباتات مقترحة لك" more="المزيد" />
+        {suggestions.map((item) => (
+        <SuggestedCard key={item.id} data={item} />
+         ))}
+    </section>
 
-    {/* <Nav />  */}
+
+    <Nav /> 
 
 </main>
     

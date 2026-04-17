@@ -1,0 +1,15 @@
+.tagCont{
+    display: inline-block;
+    padding: .3rem 1rem;
+    border-radius: 30px;
+    background-color: var(--tagBg);
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tagCont h6{
+        color: #4A8B60;
+}

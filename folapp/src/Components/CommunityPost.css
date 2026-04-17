@@ -1,10 +1,9 @@
 .community-post-card {
     font-family: var(--arabicFont);
-    background-color: #E8EDE0; /* Herbal light background */
+    background-color: var(--cardBg); 
     border-radius: 16px;
     padding: 1rem;
     width: 100%;
-    direction: rtl; /* Forces right-to-left flow */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -12,7 +11,7 @@
     display: flex;
     flex-direction: row; 
     align-items: center;
-    justify-content: flex-start; /* Aligns content to the right side because of RTL */
+    justify-content: flex-start; 
     gap: 12px;
     margin-bottom: 12px;
 }

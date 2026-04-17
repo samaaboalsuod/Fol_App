@@ -50,6 +50,10 @@
     gap: .5rem;
 }
 
+.title-group h4{
+    color: var(--lightText);
+}
+
 .plant-nick {
     font-weight: 500;
 }

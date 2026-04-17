@@ -22,14 +22,14 @@ const TaskCard = ({ task }) => {
 
     return (
         <div className="task-card">
-            {/* 1. The Pop-out Image (Far Right in RTL) */}
+            
             {TaskPng && (
                 <div className="img-container">
                     <img src={TaskPng} alt={NameAR} className="task-plant-img" />
                 </div>
             )}
 
-            {/* 2. The Text Info Section */}
+            
             <div className="task-info">
                 <div className="title-group">
                     <h2 className="plant-nick">{Nickname}</h2>
@@ -42,7 +42,7 @@ const TaskCard = ({ task }) => {
                 </div>
             </div>
 
-            {/* 3. The Separated Done Check Component (Far Left in RTL) */}
+            
             <DoneCheck onToggle={() => console.log('Toggled!')} />
         </div>
     );

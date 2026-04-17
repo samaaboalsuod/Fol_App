@@ -1,0 +1,25 @@
+.warnCard{
+    width: 100%;
+    border: 1px solid #F4B942;
+    border-radius: 80px 120px 120px 0px;
+    padding: .6rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+}
+
+.imgCont{
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background: rgba(217, 217, 217, 0.20);
+}
+.imgCont img{
+    width: 2rem;
+}

@@ -92,13 +92,13 @@
 }
 
 .done-circle.checked {
-    background-color: #FAFAEA; /* The light color for the circle fill */
-    border-color: #FAFAEA;
+    background-color: var(--lightText); 
+    border-color: var(--lightText);
     transform: scale(1.05);
 }
 
 .done-section span {
-    color: #FAFAEA;
+    color: var(--lightText);
     font-size: 0.85rem;
     opacity: 0.7;
     transition: opacity 0.3s ease;

@@ -10,12 +10,15 @@ import UserGreeting from '../Components/UserGreeting';
 import GardenHealth from './../Components/GardenHealth';
 import TaskCard from '../Components/TaskCard';
 import WarnCard from '../Components/WarnCard.jsx';
+import SectionTitle from '../Components/SectionTitle.jsx';
+import CommunityPost from '../Components/CommunityPost.jsx';
 
 const Home = () => {
 
     const userId = 1;
     const [tasks, setTasks] = useState([]);
     const [alerts, setAlerts] = useState([]);
+    const [featuredPost, setFeaturedPost] = useState(null);
 
 useEffect(() => {
         const fetchTasks = async () => {
@@ -46,9 +49,24 @@ useEffect(() => {
             }
         };
 
+        const fetchFeaturedPost = async () => {
+        const { data, error } = await supabase
+            .from('Community_Posts')
+            .select('*')
+            .eq('id', 2) // Targeting the 2nd row (Sarah Mahmoud)
+            .single();
+
+        if (error) {
+            console.error('Error fetching post:', error);
+        } else {
+            setFeaturedPost(data);
+        }
+    };
+
         // CALL BOTH FUNCTIONS HERE
-        fetchTasks();
+        fetchTasks();
         fetchAlerts();
+        fetchFeaturedPost();
 
     }, []);
 
@@ -76,7 +94,7 @@ useEffect(() => {
 
     <section className='warnSec'>
 
-        <h2>تنبيهات النباتات</h2>
+        <SectionTitle title="تنبيهات النباتات" />
 
         <div className='cardCol'>
             {alerts.map((alert) => (
@@ -88,6 +106,12 @@ useEffect(() => {
                 />
             ))}
         </div>
+
+    </section>
+
+    <section className='warnSec'>
+        <SectionTitle title="من المجتمع" more="المزيد" />
+        <CommunityPost data={featuredPost} />
     </section>
 
 

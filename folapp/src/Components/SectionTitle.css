@@ -1,0 +1,14 @@
+.sectionTitle{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.moreCont{
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}

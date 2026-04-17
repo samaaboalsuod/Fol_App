@@ -4,6 +4,7 @@
     --bgGradient: radial-gradient(50% 50% at 50% 50%, #0F3F24 0%, #082F19 100%);
     --arabicFont: "Tajawal", sans-serif;
     --transBg: #d9d9d927;
+    --lowText: #526356;
 }
 
 *{
@@ -59,10 +60,18 @@ h1{
 
 }
 
+/* SECTIONS TITLES AND MORE */
 h2{
     font-family: var(--arabicFont);
     color: var(--lightText);
     font-size: 1.2rem;
+    font-weight: 400;
+}
+
+h4{
+    font-family: var(--arabicFont);
+    color: var(--lightText);
+    font-size: 1rem;
     font-weight: 400;
 }
 

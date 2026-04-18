@@ -98,10 +98,11 @@ useEffect(() => {
             <SectionTitle title="مجموعتك" />
 
             <section className='plantGrid'>
-            {allPlants.map((plant) => (
-              <PlantCard key={plant.id} plant={plant} />
-             ))}
-            </section>
+    {/* Change allPlants to displayedPlants to enable filtering */}
+    {displayedPlants.map((plant) => (
+        <PlantCard key={plant.id} plant={plant} />
+    ))}
+</section>
 
         </section>
 

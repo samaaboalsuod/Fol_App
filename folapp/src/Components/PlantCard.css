@@ -42,7 +42,7 @@
 
 /* --- 3. Main Content & Stats --- */
 .card-content {
-  padding: .5rem;
+  padding: .8rem;
   display: flex;
   flex-direction: column;
   gap: .4rem;

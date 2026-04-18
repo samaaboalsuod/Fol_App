@@ -8,20 +8,26 @@ const PlantStats = ({ userId }) => {
 
     useEffect(() => {
         const fetchStats = async () => {
-            // Fetch 1: Total plants for the user
-            const { count: total } = await supabase
+            if (!userId) return;
+
+            // Fetch 1: Total plants for the user (using 'User' column)
+            const { count: total, error: totalError } = await supabase
                 .from('User_Plants')
                 .select('*', { count: 'exact', head: true })
-                .eq('user_id', userId);
-            setTotalPlants(total || 0);
+                .eq('User', userId);
 
-            // Fetch 2: Plants needing water (scheduled tasks)
-            const { count: water } = await supabase
+            if (!totalError) setTotalPlants(total || 0);
+
+            // Fetch 2: Scheduled watering tasks for THIS user's plants
+            // We use User_Plants!inner to filter activities by the plant owner
+            const { count: water, error: waterError } = await supabase
                 .from('Plant_Activities')
-                .select('*', { count: 'exact', head: true })
+                .select('id, User_Plants!inner(User)', { count: 'exact', head: true })
                 .eq('Activity_Type', 'ري')
-                .eq('Status', 'مجدول');
-            setNeedsWater(water || 0);
+                .eq('Status', 'مجدول')
+                .eq('User_Plants.User', userId);
+
+            if (!waterError) setNeedsWater(water || 0);
         };
 
         fetchStats();
@@ -29,17 +35,15 @@ const PlantStats = ({ userId }) => {
 
     return (
         <div className="stats-container">
-
             <div className="stat-item">
-                <div className="dot"></div>
-                <span>{totalPlants} نبات</span>
+                <div className="dot total-dot"></div>
+                <span className="stat-text">{totalPlants} نبات</span>
             </div>
 
             <div className="stat-item">
-                <div className="dot"></div>
-                <span>{needsWater} تحتاج الري</span>
+                <div className="dot water-dot"></div>
+                <span className="stat-text">{needsWater} تحتاج الري</span>
             </div>
-
         </div>
     );
 };

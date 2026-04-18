@@ -1,0 +1,30 @@
+.filter-wrapper {
+    margin: 1rem 0;
+    display: flex;
+    gap: .5rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+    scrollbar-width: none; 
+}
+
+.filter-pill {
+    padding: 0.4rem 1rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 252, 235, 0.08);
+    color: var(--cardBg);
+    cursor: pointer;
+    white-space: nowrap;
+    font-size:  1rem;
+    transition: all 0.3s ease;
+
+    font-family: var(--arabicFont);
+    font-weight: 500;
+}
+
+.filter-pill.active {
+    background-color: #F2F2E2; 
+    color: var(--darkText);
+    /* font-weight: 600; */
+}

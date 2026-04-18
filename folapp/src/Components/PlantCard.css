@@ -1,0 +1,119 @@
+/* --- 1. Global Card Container --- */
+.plant-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cardBg);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Force global variables on all children */
+.plant-card * {
+  color: var(--darkText) !important;
+  font-family: var(--arabicFont);
+  box-sizing: border-box;
+}
+
+/* --- 2. Upper Photo Section --- */
+.card-photo-container {
+  height: 180px;
+  position: relative;
+  width: 100%;
+}
+
+.card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.health-tag {
+  position: absolute;
+  top: .5rem;
+  left:.5rem;
+  background-color: var(--tagBg);
+  color: white !important; 
+  padding: .5rem 0.75rem;
+  border-radius: 35px;
+  font-size: 0.8rem;
+}
+
+/* --- 3. Main Content & Stats --- */
+.card-content {
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.plant-nickname {
+  font-size: 1.2rem;
+  margin-bottom: .3rem;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stat-item2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+    gap: 2px;
+}
+
+/* --- 4. Icons & Circular Backgrounds --- */
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-bg { background-color: rgba(244, 185, 66, 0.201); } 
+.water-bg { background-color: rgba(74, 139, 96, 0.238); }
+
+
+
+/* --- 5. Labels & Values --- */
+.stat-label {
+  font-size: .8rem;
+    opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* --- 6. Next Watering Section (Bottom) --- */
+.divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: .6rem 0;
+  width: 100%;
+}
+
+.next-watering-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.next-label {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.next-value {
+  color: #4A8B60 !important; /* Brand specific green for watering */
+  font-weight: 400;
+  font-size: 1rem;
+}

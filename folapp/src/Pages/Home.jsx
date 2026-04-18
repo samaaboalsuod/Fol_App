@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../Supabase.jsx'; 
+import { User } from '@phosphor-icons/react';
 
 import './Home.css';
 
 import Logo from '../Assets/logo.svg';
 import Nav from './../Components/Nav';
-import { User } from '@phosphor-icons/react';
 import UserGreeting from '../Components/UserGreeting';
 import GardenHealth from './../Components/GardenHealth';
 import TaskCard from '../Components/TaskCard';
@@ -21,6 +21,7 @@ const Home = () => {
     const [alerts, setAlerts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
+
 
 useEffect(() => {
     // 1. Create one master function to handle all fetching

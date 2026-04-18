@@ -36,6 +36,7 @@ main {
     padding-bottom: 70px;
     margin: 0 auto;
     width: 412px;
+    min-height: 915px;
     background: var(--bgGradient);
     position: relative; 
     display: flex;

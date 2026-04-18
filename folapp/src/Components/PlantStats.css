@@ -1,0 +1,29 @@
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* Keeps everything on the right for Arabic */
+    gap: 1vw;
+    direction: rtl;
+    padding: .6rem 2rem;
+    /* margin-top: 1rem; */
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-item span {
+    font-family: var(--arabicFont);
+    color: #FAFAEACC;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #6BA38E; /* Your herbal green */
+    border-radius: 50%;
+}

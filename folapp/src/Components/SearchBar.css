@@ -1,0 +1,23 @@
+.searchBar{
+    /* width: 100%; */
+    padding: .6vw 1vw;
+    margin: .4rem 2rem;
+    box-sizing: border-box;
+
+    background-color: var(--cardBg);
+
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+
+    border-radius: 38px;
+
+    font-size: 1rem;
+    color: #082f196f;
+}
+input{
+    all: unset;
+    font-family: var(--arabicFont);
+    width: 100%;
+
+}

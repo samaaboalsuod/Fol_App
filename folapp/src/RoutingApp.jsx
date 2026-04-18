@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
+import MyPlants from './Pages/MyPlants';
+
 
 
 
@@ -14,6 +16,7 @@ const RoutingApp = () => {
         <Routes>
 
             <Route path='/' element={<Home />} />
+            <Route path='/MyPlants' element={<MyPlants />} />
 
 
         </Routes>

@@ -5,6 +5,7 @@ const PageTitle = (props) => {
     return ( 
         <div className='pageTitle'>
             <h1>{props.title}</h1>
+            <h4>{props.desc}</h4>
         </div>
      );
 }

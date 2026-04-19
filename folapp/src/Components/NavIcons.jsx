@@ -12,7 +12,7 @@ export const NavIcons = [
     icon: PottedPlant,
   },
   {
-    path: "/Community", // Assuming this is for UsersThree
+    path: "/Community", 
     label: "Community",
     icon: UsersThree,
   },

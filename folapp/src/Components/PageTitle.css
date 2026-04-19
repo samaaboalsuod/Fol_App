@@ -7,3 +7,11 @@
     gap: .5rem;
 
 }
+
+.pageTitle h4{
+    font-family: var(--arabicFont);
+    color: var(--lightText);
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: .8;
+}

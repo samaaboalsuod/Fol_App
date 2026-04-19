@@ -1,0 +1,28 @@
+.writePostCont{
+    margin: 2vw auto;
+    width: 87%;
+    /* height: 80px; */
+    background: var(--transBg);
+    border-radius: 8px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+    padding: .8rem 1.2rem;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgright{
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+}
+
+.imgright .user-avatar{
+    width: 40px;
+    height: 40px;
+    border: none;
+}

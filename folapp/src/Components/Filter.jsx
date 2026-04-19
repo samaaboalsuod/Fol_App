@@ -1,20 +1,9 @@
-// import React, { Component } from 'react';
-// const Filter = (props) => {
-//     return ( 
-//         <div className='filterCont'>
-//             <p>{props.option}</p>
-//         </div>
-//      );
-// }
- 
-// export default Filter;
-
 import React from 'react';
 import './Filter.css';
 
-const Filter = ({ activeFilter, setActiveFilter }) => {
-    // These labels match the 'Health_Status(AR)' values in your SQL file
-    const filterOptions = [
+const Filter = ({ activeFilter, setActiveFilter, options }) => {
+    // Fallback to default options if none are provided
+    const displayOptions = options || [
         { id: 'الكل', label: 'الكل' },
         { id: 'صحي', label: 'ممتاز' },
         { id: 'تحتاج للري', label: 'تحتاج عناية' },
@@ -23,7 +12,7 @@ const Filter = ({ activeFilter, setActiveFilter }) => {
 
     return (
         <div className="filter-wrapper">
-            {filterOptions.map((option) => (
+            {displayOptions.map((option) => (
                 <button
                     key={option.id}
                     className={`filter-pill ${activeFilter === option.id ? 'active' : ''}`}

@@ -15,6 +15,7 @@ import Filter from '../Components/Filter.jsx';
 import PlantCard from './../Components/PlantCard';
 import SectionTitle from '../Components/SectionTitle.jsx';
 import GeneralCard from './../Components/GeneralCard';
+import HealthIndicators from '../Components/HealthIndicators.jsx';
 
 const MyPlants = () => {
 
@@ -24,72 +25,70 @@ const MyPlants = () => {
         const [myPlants, setMyPlants] = useState([]);
         const [loading, setLoading] = useState(true);
         const [stats, setStats] = useState({ health: 0, lowLight: 0, needsWater: 0 });
+        const [healthCounts, setHealthCounts] = useState({ excellent: 0, good: 0, needsCare: 0 });
 
 useEffect(() => {
     const fetchPlants = async () => {
         try {
             setLoading(true);
-            // 1. Fetch from User_Plants AND join with the Plant table
             const { data, error } = await supabase
                 .from('User_Plants')
-                .select(`
-                    *,
-                    Plant_Details:Plant (*)
-                `)
-                .eq('User', 1); 
+                .select(`*, Plant_Details:Plant (*)`)
+                .eq('User', 1);
 
             if (error) throw error;
 
             if (data) {
-                // --- A. Logic for Individual Plant Cards ---
+                // 1. Format individual cards
                 const formattedData = data.map(plant => {
                     let wateringStatus = "لم تسقَ بعد";
-                    
                     if (plant.Last_Watered) {
                         const lastDate = new Date(plant.Last_Watered).toDateString();
                         const today = new Date().toDateString();
                         const yesterday = new Date(Date.now() - 86400000).toDateString();
-
                         if (lastDate === today) wateringStatus = "اليوم";
                         else if (lastDate === yesterday) wateringStatus = "أمس";
                         else wateringStatus = "منذ فترة";
                     }
-
-                    return {
-                        ...plant,
-                        displayWatering: wateringStatus
-                    };
+                    return { ...plant, displayWatering: wateringStatus };
                 });
-
                 setAllPlants(formattedData);
 
-                // --- B. Logic for Dashboard Stats Cards ---
-                const lowLightCount = data.filter(p => p['Health_Status(AR)'] === 'تحتاج للضوء').length;
-                const needsWaterCount = data.filter(p => p['Health_Status(AR)'] === 'تحتاج للري').length;
+                // 2. Calculate Dashboard Stats
+                const lowLight = data.filter(p => p['Health_Status(AR)'] === 'تحتاج للضوء').length;
+                const waterCount = data.filter(p => p['Health_Status(AR)'] === 'تحتاج للري').length;
                 
-                // Calculate General Health % based on status categories
                 const total = data.length;
                 const healthScore = data.reduce((acc, p) => {
                     if (p['Health_Status(AR)'] === 'ممتاز' || p['Health_Status(AR)'] === 'صحي') return acc + 1;
-                    if (p['Health_Status(AR)'].includes('تحتاج')) return acc + 0.5;
+                    if (p['Health_Status(AR)'].includes('عناية')) return acc + 0.5;
                     return acc;
                 }, 0);
                 
-                const healthPercentage = total > 0 ? Math.round((healthScore / total) * 100) : 0;
-
                 setStats({
-                    health: healthPercentage,
-                    lowLight: lowLightCount,
-                    needsWater: needsWaterCount
+                    health: total > 0 ? Math.round((healthScore / total) * 100) : 0,
+                    lowLight: lowLight,
+                    needsWater: waterCount
                 });
+
+                // 3. Calculate Health Indicators for the new card
+               setHealthCounts({
+    // Using .includes ensures we catch 'ممتاز' even if there are weird hidden spaces
+    excellent: data.filter(p => p['Health_Status(AR)']?.includes('ممتاز')).length,
+    
+    // Catch 'جيد' or 'صحي' (Matches your current '3')
+    good: data.filter(p => p['Health_Status(AR)']?.includes('صحي') || p['Health_Status(AR)']?.includes('جيد')).length,
+    
+    // Catch anything that says 'تحتاج' (Needs light/water)
+    needsCare: data.filter(p => p['Health_Status(AR)']?.includes('تحتاج')).length,
+});
             }
         } catch (err) {
-            console.error("Error loading plants:", err.message);
+            console.error("Error:", err.message);
         } finally {
             setLoading(false);
         }
     };
-
     fetchPlants();
 }, []);
 
@@ -131,6 +130,8 @@ useEffect(() => {
         title="يحتاج سقاية" 
     />
         </section>
+
+        <HealthIndicators counts={healthCounts} />
 
         <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
 

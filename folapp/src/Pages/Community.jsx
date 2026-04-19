@@ -20,6 +20,7 @@ import ProblemCard from '../Components/ProblemCard.jsx';
 import AdviceCard from './../Components/AdviceCard';
 import LessonCard from './../Components/LessonOutCard';
 import PopularCard from '../Components/PopularCard.jsx';
+import EventCard from './../Components/EventCard';
 
 
 const Community = () => {
@@ -35,6 +36,7 @@ const Community = () => {
         aloe: null,
         monstera: null
     });
+    const [eventsList, setEventsList] = useState([]);
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -107,12 +109,24 @@ useEffect(() => {
         setPopularPlants({ pothos, aloe, monstera });
     };
 
+    const fetchEvents = async () => {
+    const { data, error } = await supabase
+        .from('Events')
+        .select('*')
+        .order('event_day', { ascending: true }); // Optional: order by date
+
+    if (data) {
+        setEventsList(data);
+    }
+    };
+
     fetchFeaturedPosts();
     fetchPageTitle();
     fetchProblems();
     fetchAdvice();
     fetchLessons();
     fetchPopularData();
+    fetchEvents();
 }, []);
 
 
@@ -190,13 +204,13 @@ useEffect(() => {
 
         </section>
 
-
-    
-    
-    
-    
-    
-    
+        <section className='warnSec'>
+            <SectionTitle title="الفعاليات"  more="كل الفعاليات" />
+            {eventsList.map((event) => (
+                <EventCard key={event.id} data={event} />
+             ))}
+            <EventCard />
+        </section>
     
     
         <Nav /> 

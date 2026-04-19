@@ -17,6 +17,7 @@ import PlantStats from './../Components/PlantStats';
 import WritePost from './../Components/WritePost';
 import CommunityPost from '../Components/CommunityPost.jsx';
 import ProblemCard from '../Components/ProblemCard.jsx';
+import AdviceCard from './../Components/AdviceCard';
 
 
 const Community = () => {
@@ -25,6 +26,7 @@ const Community = () => {
     const [activeFilter, setActiveFilter] = useState('الكل');
     const [featuredPosts, setFeaturedPosts] = useState([]);
     const [problems, setProblems] = useState([]);
+    const [adviceList, setAdviceList] = useState([]);
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -74,9 +76,19 @@ useEffect(() => {
             }
    };
 
+   const fetchAdvice = async () => {
+        const { data, error } = await supabase
+            .from('Advice')
+            .select('*')
+            .order('id', { ascending: true });
+
+        if (data) setAdviceList(data);
+    };
+
     fetchFeaturedPosts();
     fetchPageTitle();
     fetchProblems();
+    fetchAdvice();
 }, []);
 
 
@@ -117,6 +129,18 @@ useEffect(() => {
 
                 {problems.map((item) => (
                     <ProblemCard key={item.id} data={item} />
+                ))}
+            </div>
+
+        </section>
+
+        <section className='warnSec'>
+
+            <SectionTitle title="نصائح المجتمع"  more="المزيد" />
+
+            <div className='adviceCont'>
+                {adviceList.map((item) => (
+                      <AdviceCard key={item.id} data={item} />
                 ))}
             </div>
 

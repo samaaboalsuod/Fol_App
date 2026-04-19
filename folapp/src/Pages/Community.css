@@ -10,3 +10,20 @@
     justify-content: space-between;
     gap: 1rem;
 }
+
+/* .adviceCont{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+} */
+
+.adviceCont {
+    width: 100%;
+    /* max-width: 500px;  */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem; /* Reduced gap so sharp corners sit closer together */
+    /* padding: 1rem; */
+    box-sizing: border-box;
+}

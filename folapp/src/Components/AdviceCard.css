@@ -1,0 +1,49 @@
+.adviceCard {
+    width: 100%;
+    height: 100%; /* Stretching the height to match content */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+    padding: .9rem;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+
+    text-align: center;
+    color: var(--lightText);
+    font-family: var(--arabicFont);
+    aspect-ratio: 1 / 1; 
+    background: rgba(255, 255, 255, 0.05); /* Added subtle background */
+}
+
+
+/* Top Right Card -> Sharp Bottom Left */
+.adviceCard:nth-child(1) { border-radius: 50% 50% 50% 0; } 
+
+/* Top Left Card -> Sharp Bottom Right */
+.adviceCard:nth-child(2) { border-radius: 50% 50% 0 50%; } 
+
+/* Bottom Right Card -> Sharp Top Left */
+.adviceCard:nth-child(3) { border-radius: 0 50% 50% 50%; }
+
+/* Bottom Left Card -> Sharp Top Right */
+.adviceCard:nth-child(4) { border-radius: 50% 0 50% 50%; } 
+
+.adviceCard img {
+    width: 32px;
+    height: 32px;
+
+}
+
+.adviceCard h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.adviceCard p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}

@@ -1,0 +1,41 @@
+.generalCardCont{
+    width: 30%;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.03);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+.generalCardCont h1{
+    font-size: 2.2rem;
+}
+.generalCardCont h2{
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: .8;
+}
+
+.generalCardCont:nth-child(1) .card-icon {
+    color: #5FA777; /* Light Green */
+}
+
+/* 2. Sun (Light) Color */
+.generalCardCont:nth-child(2) .card-icon {
+    color: #F4B942; /* Your brand yellow */
+}
+
+/* 3. Drop (Water) Color */
+.generalCardCont:nth-child(3) .card-icon {
+    color: #4A8B60; /* Your brand green */
+}

@@ -6,3 +6,15 @@
     grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
     gap: 16px;
 }
+
+.generalSec{
+    margin: 1.5rem 0;
+    width: 100%;
+    padding: 0 2rem;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1vw;
+}

@@ -19,6 +19,7 @@ import CommunityPost from '../Components/CommunityPost.jsx';
 import ProblemCard from '../Components/ProblemCard.jsx';
 import AdviceCard from './../Components/AdviceCard';
 import LessonCard from './../Components/LessonOutCard';
+import PopularCard from '../Components/PopularCard.jsx';
 
 
 const Community = () => {
@@ -29,6 +30,11 @@ const Community = () => {
     const [problems, setProblems] = useState([]);
     const [adviceList, setAdviceList] = useState([]);
     const [lessons, setLessons] = useState([]);
+    const [popularPlants, setPopularPlants] = useState({
+        pothos: null,
+        aloe: null,
+        monstera: null
+    });
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -92,11 +98,21 @@ useEffect(() => {
         if (data) setLessons(data);
     };
 
+    const fetchPopularData = async () => {
+        // Fetching by IDs based on your Plant_rows.sql file
+        const { data: pothos } = await supabase.from('Plant').select('NameAR, Cover_Photo, alt').eq('id', 1).single();
+        const { data: aloe } = await supabase.from('Plant').select('NameAR, Cover_Photo, alt').eq('id', 2).single();
+        const { data: monstera } = await supabase.from('Plant').select('NameAR, Cover_Photo, alt').eq('id', 9).single();
+
+        setPopularPlants({ pothos, aloe, monstera });
+    };
+
     fetchFeaturedPosts();
     fetchPageTitle();
     fetchProblems();
     fetchAdvice();
     fetchLessons();
+    fetchPopularData();
 }, []);
 
 
@@ -159,6 +175,19 @@ useEffect(() => {
             {lessons.map((lesson) => (
               <LessonCard key={lesson.id} data={lesson} />
             ))}
+        </section>
+
+        <section className='warnSec'>
+            <SectionTitle title="نباتات رائجة"  />
+
+            <div className='popularRow'>
+
+               <PopularCard data={popularPlants.aloe} hardcodedCount={120} />
+               <PopularCard data={popularPlants.pothos} hardcodedCount={180} />
+               <PopularCard data={popularPlants.monstera} hardcodedCount={245} />
+
+            </div>
+
         </section>
 
 

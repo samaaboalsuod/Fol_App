@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import MyPlants from './Pages/MyPlants';
 import Community from './Pages/Community';
 import Help from './Pages/Help';
+import AskService from './Pages/AskService';
 
 
 
@@ -21,6 +22,7 @@ const RoutingApp = () => {
             <Route path='/MyPlants' element={<MyPlants />} />
             <Route path='/Community' element={<Community />} />
             <Route path='/Help' element={<Help />} />
+            <Route path='/AskService/:id' element={<AskService />} />
 
 
         </Routes>

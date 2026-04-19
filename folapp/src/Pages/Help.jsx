@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx'; 
 import './Help.css';
 
@@ -38,8 +39,8 @@ const Help = () => {
         <div className='askCardsSec'>
 
             <div className='askRow'>
-                <AskServiceCard data={services.ai} isWide={false} />
-                <AskServiceCard data={services.chat} isWide={false} className="chat-card" />
+                <Link to="/AskService/3"><AskServiceCard data={services.ai}  className="ai-card"/> </Link>
+                <Link to="/AskService/2"><AskServiceCard data={services.chat} className="chat-card" /> </Link>
             </div>
 
             <AskServiceCard data={services.call} isWide={true} />

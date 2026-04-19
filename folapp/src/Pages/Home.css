@@ -55,6 +55,12 @@ main {
 
 }
 
+a, .cardLink {
+    text-decoration: none !important; /* Removes underlines */
+    color: inherit !important;        /* Prevents the default blue color */
+    display: contents;               /* CRITICAL: Makes the link "invisible" to layout */
+}
+
 /* ONLY FOR PAGES TITLES  24 BOLD */
 h1{
     font-family: var(--arabicFont);

@@ -18,6 +18,7 @@ import WritePost from './../Components/WritePost';
 import CommunityPost from '../Components/CommunityPost.jsx';
 import ProblemCard from '../Components/ProblemCard.jsx';
 import AdviceCard from './../Components/AdviceCard';
+import LessonCard from './../Components/LessonOutCard';
 
 
 const Community = () => {
@@ -27,6 +28,7 @@ const Community = () => {
     const [featuredPosts, setFeaturedPosts] = useState([]);
     const [problems, setProblems] = useState([]);
     const [adviceList, setAdviceList] = useState([]);
+    const [lessons, setLessons] = useState([]);
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -85,10 +87,16 @@ useEffect(() => {
         if (data) setAdviceList(data);
     };
 
+    const fetchLessons = async () => {
+        const { data } = await supabase.from('Lessons').select('*');
+        if (data) setLessons(data);
+    };
+
     fetchFeaturedPosts();
     fetchPageTitle();
     fetchProblems();
     fetchAdvice();
+    fetchLessons();
 }, []);
 
 
@@ -144,6 +152,13 @@ useEffect(() => {
                 ))}
             </div>
 
+        </section>
+
+        <section className='warnSec'>
+            <SectionTitle title="أبرز الدروس"  more="كل الدروس" />
+            {lessons.map((lesson) => (
+              <LessonCard key={lesson.id} data={lesson} />
+            ))}
         </section>
 
 

@@ -47,6 +47,10 @@
     gap: .5rem;
 }
 
+.dataCol h6{
+    color: var(--darkText);
+}
+
 .tagsCont{
     display: flex;
     align-items: center;

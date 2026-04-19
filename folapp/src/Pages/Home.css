@@ -3,7 +3,7 @@
     --darkText: #082F19;
     --bgGradient: radial-gradient(50% 50% at 50% 50%, #0F3F24 0%, #082F19 100%);
     --arabicFont: "Tajawal", sans-serif;
-    --transBg: #d9d9d927;
+    --transBg: #d9d9d914;
     --lowText: #526356;
     --cardBg: #e0e1ce;
     --tagBg: #c8d6b3;
@@ -33,7 +33,7 @@ html, body {
 }
 
 main {
-    padding-bottom: 70px;
+    padding-bottom: 80px;
     margin: 0 auto;
     width: 412px;
     min-height: 915px;

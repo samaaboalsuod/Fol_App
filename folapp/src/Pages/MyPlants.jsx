@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../Supabase.jsx'; 
-import { Sun, Drop, TrendUp } from '@phosphor-icons/react';
+import { Sun, Drop, TrendUp, Plus } from '@phosphor-icons/react';
 
 import './MyPlants.css';
 
@@ -146,6 +146,13 @@ useEffect(() => {
 
         </section>
 
+        <section className='addCard'>
+            <div className='plusCircle'>
+                <Plus size={32} color='#fff' />
+            </div>
+            <h2>أضف نباتًا جديد</h2>
+            <p>امسح نبات أو اختر من الكتالوج</p>
+        </section>
 
 
 

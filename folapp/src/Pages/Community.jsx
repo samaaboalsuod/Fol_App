@@ -16,6 +16,7 @@ import SectionTitle from '../Components/SectionTitle.jsx';
 import PlantStats from './../Components/PlantStats';
 import WritePost from './../Components/WritePost';
 import CommunityPost from '../Components/CommunityPost.jsx';
+import ProblemCard from '../Components/ProblemCard.jsx';
 
 
 const Community = () => {
@@ -23,6 +24,7 @@ const Community = () => {
     const [pageInfo, setPageInfo] = useState({ title: '', desc: '' });
     const [activeFilter, setActiveFilter] = useState('الكل');
     const [featuredPosts, setFeaturedPosts] = useState([]);
+    const [problems, setProblems] = useState([]);
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -61,8 +63,20 @@ useEffect(() => {
         }
     };
 
+    const fetchProblems = async () => {
+            // 2. Fetch from your new 'Problems' table
+            const { data, error } = await supabase
+                .from('Problems')
+                .select('*');
+
+            if (data) {
+                setProblems(data);
+            }
+   };
+
     fetchFeaturedPosts();
     fetchPageTitle();
+    fetchProblems();
 }, []);
 
 
@@ -93,6 +107,19 @@ useEffect(() => {
                   <CommunityPost key={post.id} data={post} />
                 ))}
             </div>
+        </section>
+
+        <section className='warnSec'>
+
+            <SectionTitle title="مشاكل النباتات"  more="المزيد" />
+
+            <div className='problemsRow'>
+
+                {problems.map((item) => (
+                    <ProblemCard key={item.id} data={item} />
+                ))}
+            </div>
+
         </section>
 
 

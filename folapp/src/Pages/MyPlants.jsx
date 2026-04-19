@@ -140,10 +140,10 @@ useEffect(() => {
             <SectionTitle title="مجموعتك" />
 
             <section className='plantGrid'>
-    {displayedPlants.map((plant) => (
+                 {displayedPlants.map((plant) => (
         <PlantCard key={plant.id} plant={plant} />
-    ))}
-</section>
+                 ))}
+            </section>
 
         </section>
 

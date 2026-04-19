@@ -15,12 +15,14 @@ import Filter from '../Components/Filter.jsx';
 import SectionTitle from '../Components/SectionTitle.jsx';
 import PlantStats from './../Components/PlantStats';
 import WritePost from './../Components/WritePost';
+import CommunityPost from '../Components/CommunityPost.jsx';
 
 
 const Community = () => {
 
     const [pageInfo, setPageInfo] = useState({ title: '', desc: '' });
     const [activeFilter, setActiveFilter] = useState('الكل');
+    const [featuredPosts, setFeaturedPosts] = useState([]);
     
     const communityOptions = [
     { id: 'الكل', label: 'الكل' },
@@ -47,6 +49,19 @@ useEffect(() => {
             });
         }
     };
+    const fetchFeaturedPosts = async () => {
+        const { data, error } = await supabase
+            .from('Community_Posts')
+            .select('*')
+            .order('id', { ascending: true }) // Ensures they appear in order of creation
+            .limit(3); // Only fetches the first 3 posts
+
+        if (data) {
+            setFeaturedPosts(data);
+        }
+    };
+
+    fetchFeaturedPosts();
     fetchPageTitle();
 }, []);
 
@@ -68,6 +83,17 @@ useEffect(() => {
         <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} options={communityOptions} />
 
         <WritePost />
+
+        <section className='warnSec'>
+
+            <SectionTitle title="منشورات مميزة" />
+
+            <div className='postsSec'>
+                {featuredPosts.map((post) => (
+                  <CommunityPost key={post.id} data={post} />
+                ))}
+            </div>
+        </section>
 
 
     

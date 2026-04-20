@@ -10,7 +10,6 @@
     /* flex-grow: 1; */
     height: 850px;
     margin-top: 140px;
-    /* Space for fixed headers */
     margin-bottom: 80px;
     overflow-y: auto;
     scrollbar-width: none;

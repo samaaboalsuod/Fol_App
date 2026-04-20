@@ -26,13 +26,15 @@ const Profile = () => {
     const [achievements, setAchievements] = useState({
        posts: 0,
        plantOrdinal: '',
-       daysOfCare: 0
+       daysOfCare: 0,
+       comments: 0, 
+       totalLikes: 0
     });
 
-    // Added: State to manage carousel positions
+
     const [positionIdx, setPositionIdx] = useState([0, 1, 2]);
 
-    // Added: Function to swap cards
+
     const handleSwap = () => {
         setPositionIdx((prevIdx) => prevIdx.map((prev) => (prev + 1) % 3));
     };
@@ -45,60 +47,71 @@ const cardVariants = {
     right: { x: '75%', scale: 0.8, zIndex: 1, opacity: 0.5 },
 };
 
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                // 1. Fetch User Data
-                const { data: user } = await supabase
-                    .from('Users')
-                    .select('FirstName, LastName, "E-mail", created_at, Posts')
-                    .eq('id', 1)
-                    .single();
+    
 
-                if (user) {
-                    const joinedDate = new Date(user.created_at);
-                    const today = new Date();
-                    const diffTime = Math.abs(today - joinedDate);
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+useEffect(() => {
+    const loadData = async () => {
+        try {
+            // 1. Fetch User Data (Profile, Posts, and new Total_Likes)
+            const { data: user } = await supabase
+                .from('Users')
+                .select('FirstName, LastName, "E-mail", created_at, Posts, Total_Likes')
+                .eq('id', 1)
+                .single();
 
-                    setProfileData({
-                        fullName: `${user.FirstName} ${user.LastName}`,
-                        email: user["E-mail"],
-                        joinedDate: new Date(user.created_at).toLocaleDateString('en-GB')
-                    });
+            // 2. Fetch comment count from the new Comments table
+            const { count: commentCount } = await supabase
+                .from('Comments')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', 1);
 
-                    setAchievements(prev => ({
-                        ...prev,
-                        posts: user.Posts || 8, // cite: Users_rows.sql
-                        daysOfCare: diffDays
-                    }));
-                }
+            if (user) {
+                const joinedDate = new Date(user.created_at);
+                const today = new Date();
+                const diffTime = Math.abs(today - joinedDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-                // 2. Fetch Plant Data
-                const { data: plants } = await supabase
-                    .from('User_Plants')
-                    .select('"Health_Status(AR)"') 
-                    .eq('User', 1);
+                setProfileData({
+                    fullName: `${user.FirstName} ${user.LastName}`,
+                    email: user["E-mail"],
+                    joinedDate: new Date(user.created_at).toLocaleDateString('en-GB')
+                });
 
-                if (plants) {
-                    const totalCount = plants.length; // 6 plants
-                    const healthyCount = plants.filter(p => p['Health_Status(AR)'] === 'صحي').length;
-                    const percentage = totalCount > 0 ? Math.round((healthyCount / totalCount) * 100) : 0;
-
-                    setStats({ total: totalCount, healthPercent: percentage });
-
-                    const ordinals = ["الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس", "السابع"];
-                    setAchievements(prev => ({
-                        ...prev,
-                        plantOrdinal: ordinals[totalCount - 1] || totalCount // "السادس"
-                    }));
-                }
-            } catch (err) {
-                console.error("Data loading failed:", err);
+                // Update achievements including the new community stats
+                setAchievements(prev => ({
+                    ...prev,
+                    posts: user.Posts || 0,
+                    daysOfCare: diffDays,
+                    totalLikes: user.Total_Likes || 0, // From your new column
+                    comments: commentCount || 0 // From the 12 rows we just created
+                }));
             }
-        };
-        loadData();
-    }, []);
+
+            // 3. Fetch Plant Data for Stats and Ordinals
+            const { data: plants } = await supabase
+                .from('User_Plants')
+                .select('"Health_Status(AR)"') 
+                .eq('User', 1);
+
+            if (plants) {
+                const totalCount = plants.length; 
+                const healthyCount = plants.filter(p => p['Health_Status(AR)'] === 'صحي').length;
+                const percentage = totalCount > 0 ? Math.round((healthyCount / totalCount) * 100) : 0;
+
+                setStats({ total: totalCount, healthPercent: percentage });
+
+                const ordinals = ["الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس", "السابع"];
+                setAchievements(prev => ({
+                    ...prev,
+                    plantOrdinal: ordinals[totalCount - 1] || totalCount 
+                }));
+            }
+        } catch (err) {
+            console.error("Data loading failed:", err);
+        }
+    };
+    loadData();
+}, []);
 
     // Create a data array for the map in return
     const achievementData = [
@@ -181,11 +194,11 @@ const cardVariants = {
             <SectionTitle title="نشاط المجتمع" />
 
             <div className='whiteRoundCard'>
-                <DataLine title="الاسم" value={profileData.fullName} />
+                <DataLine title="المنشورات" value={achievements.posts} />
                 <hr className='datastrap' />
-                <DataLine title="البريد الإلكتروني" value={profileData.email} />
+                <DataLine title="التعليقات" value={achievements.comments} />
                 <hr className='datastrap' />
-                <DataLine title="تاريخ الانضمام" value={profileData.joinedDate} />
+                <DataLine title="الإعجابات المستلمة" value={achievements.totalLikes} />
             </div>
             
         </section>

@@ -177,6 +177,19 @@ const cardVariants = {
 </div>
 </section>
 
+        <section className='warnSec'>
+            <SectionTitle title="نشاط المجتمع" />
+
+            <div className='whiteRoundCard'>
+                <DataLine title="الاسم" value={profileData.fullName} />
+                <hr className='datastrap' />
+                <DataLine title="البريد الإلكتروني" value={profileData.email} />
+                <hr className='datastrap' />
+                <DataLine title="تاريخ الانضمام" value={profileData.joinedDate} />
+            </div>
+            
+        </section>
+
 
 
 

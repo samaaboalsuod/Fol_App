@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../Supabase.jsx';
-import { UsersThree, Confetti, PottedPlant, Gear, ArrowLeft } from '@phosphor-icons/react';
+import { UsersThree, Confetti, PottedPlant, Gear, ArrowLeft, SignOut } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './Profile.css';
@@ -216,6 +216,11 @@ useEffect(() => {
                     <div className='settingsLeft'>
                          <ArrowLeft size={24} color="#4A8B60" />
                     </div>
+                </div>
+
+                <div className='logoutCard'>
+                    <h2>تسجيل الخروج</h2>
+                    <SignOut size={28} color="#D26B76" mirrored={true} />
                 </div>
 
 

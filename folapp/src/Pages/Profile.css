@@ -82,3 +82,24 @@
     display: flex;
     align-items: center;
 }
+
+.logoutCard {
+    margin: 2rem auto 1rem auto;
+    width: 87%;
+    background-color: var(--cardBg);
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    cursor: pointer;
+}
+
+.logoutCard h2 {
+    color: #D26B76;
+    font-size: 1.2rem;
+    font-weight: 500;
+}

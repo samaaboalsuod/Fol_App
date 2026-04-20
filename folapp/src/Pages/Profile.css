@@ -27,3 +27,13 @@
     justify-content: space-between;
     gap: 1rem;
 }
+
+.achievementsCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+
+    text-align: center;
+}

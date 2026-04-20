@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../Supabase.jsx';
-import { UsersThree, Confetti, PottedPlant } from '@phosphor-icons/react';
+import { UsersThree, Confetti, PottedPlant, Gear, ArrowLeft } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './Profile.css';
@@ -200,9 +200,23 @@ useEffect(() => {
                 <hr className='datastrap' />
                 <DataLine title="الإعجابات المستلمة" value={achievements.totalLikes} />
             </div>
+
             
         </section>
 
+
+                <div className='settingsCard'>
+                    <div className='settingsRightSide'>
+                        <div className='gearCircle'>
+                            <Gear size={28} weight="fill" color="#FAFAEA" />
+                        </div>
+                        <h2>الإعدادات</h2>
+                    </div>
+
+                    <div className='settingsLeft'>
+                         <ArrowLeft size={24} color="#4A8B60" />
+                    </div>
+                </div>
 
 
 

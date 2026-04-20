@@ -1,0 +1,38 @@
+.chatCont{
+    position: fixed; /* Changed from sticky to fixed to stay at the very bottom */
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    width: 87%; 
+    max-width: 370px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chatMain{
+    flex-grow: 1;
+    width: 100%;
+    padding: .6vw 1vw;
+    box-sizing: border-box;
+    background-color: var(--cardBg);
+    border-radius: 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sendCircl{
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(270deg, #4A8B60 0%, #4C8E62 9.09%, #4E9064 18.18%, #509366 27.27%, #529568 36.36%, #53986A 45.45%, #559A6C 54.55%, #579D6F 63.64%, #599F71 72.73%, #5BA273 81.82%, #5DA475 90.91%, #5FA777 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

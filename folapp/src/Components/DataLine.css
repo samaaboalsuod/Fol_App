@@ -1,0 +1,14 @@
+.dataLine{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dataLine h4{
+    font-family: var(--arabicFont);
+    color: var(--darkText);
+    font-size: 1rem;
+    font-weight: 600;
+}

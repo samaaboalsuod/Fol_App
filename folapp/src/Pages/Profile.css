@@ -1,0 +1,22 @@
+.whiteRoundCard{
+    width: 100%;
+    padding: 1.2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    background-color: var( --cardBg);
+    border-radius: 16px;
+
+}
+
+.datastrap{
+    width: 94%;
+    height: 1px;
+
+    background-color: #C7CDB6;
+
+    border: none;
+
+}

@@ -7,6 +7,8 @@ import Nav from './../Components/Nav';
 import ProfileTop from './../Components/ProfileTop';
 import SectionTitle from '../Components/SectionTitle.jsx';
 import DataLine from '../Components/DataLine.jsx';
+import BigCardProfile from '../Components/BigCardProfile.jsx';
+
 
 
 const Profile = () => {
@@ -16,29 +18,55 @@ const Profile = () => {
         email: '',
         joinedDate: ''
     });
+    const [stats, setStats] = useState({ total: 0, healthPercent: 0 });
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            const { data, error } = await supabase
+useEffect(() => {
+    const loadData = async () => {
+        try {
+            // 1. Fetch Profile Data
+            const { data: user, error: userErr } = await supabase
                 .from('Users')
                 .select('FirstName, LastName, "E-mail", created_at')
                 .eq('id', 1)
                 .single();
 
-            if (data) {
-                // Formatting the date to match your screenshot
-                const dateOnly = new Date(data.created_at).toLocaleDateString('en-GB'); 
-
+            if (user) {
+                const dateOnly = new Date(user.created_at).toLocaleDateString('en-GB'); 
                 setProfileData({
-                    fullName: `${data.FirstName} ${data.LastName}`,
-                    email: data["E-mail"],
+                    fullName: `${user.FirstName} ${user.LastName}`,
+                    email: user["E-mail"],
                     joinedDate: dateOnly 
                 });
             }
-        };
 
-        fetchUserData();
-    }, []);
+            // 2. Fetch Plant Health Stats
+            // We use double quotes for the column name with parentheses
+            const { data: plants, error: plantErr } = await supabase
+                .from('User_Plants')
+                .select('"Health_Status(AR)"') 
+                .eq('User', 1);
+
+            if (plants) {
+                const totalCount = plants.length; // This should be 6
+                
+                // Filtering for "صحي"
+                const healthyCount = plants.filter(p => p['Health_Status(AR)'] === 'صحي').length;
+                
+                // 3 / 6 = 50%
+                const percentage = totalCount > 0 ? Math.round((healthyCount / totalCount) * 100) : 0;
+
+                setStats({
+                    total: totalCount,
+                    healthPercent: percentage
+                });
+            }
+        } catch (err) {
+            console.error("Data loading failed:", err);
+        }
+    };
+
+    loadData();
+}, []);
 
 
     return ( <>
@@ -62,6 +90,22 @@ const Profile = () => {
                 <DataLine title="تاريخ الانضمام" value={profileData.joinedDate} />
             </div>
             
+        </section>
+
+        <section className='warnSec'>
+            <SectionTitle title="نباتاتي" more="عرض الكل" />
+
+            <div className='cardRow'>
+                <BigCardProfile 
+                title="النباتات النشطة" 
+                value={stats.total} 
+            />
+            
+            <BigCardProfile 
+                title="الصحة العامة" 
+                value={`${stats.healthPercent}%`} 
+            />
+            </div>
         </section>
 
 

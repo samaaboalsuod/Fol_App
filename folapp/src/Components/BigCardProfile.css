@@ -1,0 +1,19 @@
+.bigCardProfile{
+    width: 100%;
+
+    padding: 1rem;
+    box-sizing: border-box;
+
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-between;
+    gap: .5rem;
+
+    color: var(--lightText);
+}

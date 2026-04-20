@@ -18,5 +18,12 @@
     background-color: #C7CDB6;
 
     border: none;
+}
 
+.cardRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 }

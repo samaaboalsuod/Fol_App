@@ -6,6 +6,7 @@ import MyPlants from './Pages/MyPlants';
 import Community from './Pages/Community';
 import Help from './Pages/Help';
 import AskService from './Pages/AskService';
+import Profile from './Pages/Profile';
 
 
 
@@ -23,6 +24,7 @@ const RoutingApp = () => {
             <Route path='/Community' element={<Community />} />
             <Route path='/Help' element={<Help />} />
             <Route path='/AskService/:id' element={<AskService />} />
+            <Route path='/Profile' element={<Profile />} />
 
 
         </Routes>

@@ -1,0 +1,18 @@
+.preQuestion{
+    width: stretch;
+    max-width: 166px;
+    white-space: nowrap;
+    padding: .4rem 1rem;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(10px);
+
+    background: var(--transBg);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+}

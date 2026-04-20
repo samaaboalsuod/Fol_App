@@ -9,6 +9,7 @@ import Logo from '../Assets/logo.svg';
 import Nav from './../Components/Nav';
 import Chat from '../Components/Chat.jsx';
 import GeneralCard from '../Components/GeneralCard.jsx';
+import PreQuestion from '../Components/PreQuestion.jsx';
 
 const AskService = () => {
     const { id } = useParams(); // Catches '2' or '3' from the URL
@@ -61,8 +62,13 @@ const AskService = () => {
                 <GeneralCard Icon={Scissors} title="التقليم" className='card-icon4' />
             </section>
 
+            <section className='preQuestionSec'>
+                <PreQuestion text="أفضل نباتات للمبتدئين" />
+                <PreQuestion text="نباتات تنقي الهواء" />
+                <PreQuestion text="لماذا تذبل الأوراق؟" />
+                <PreQuestion text="كم مرة أسقي الصبار؟" />
+            </section>
 
-            {/* Chat content will go here */}
             <Chat />
             
             <Nav />

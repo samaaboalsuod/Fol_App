@@ -39,3 +39,21 @@
     transform: translateX(-50%);
      max-width: 412px;
 }
+
+.preQuestionSec{
+    width: 100%;
+    max-width: 412px;
+     left: 50%;
+    transform: translateX(-50%);
+
+    position: fixed;
+    bottom: 290px;
+    padding: 0 2rem;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}

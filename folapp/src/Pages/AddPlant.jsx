@@ -9,6 +9,7 @@ import PageTitle from '../Components/PageTitle';
 import SectionTitle from '../Components/SectionTitle';
 import MethodCard from '../Components/MethodCard';
 import BenefitCard from '../Components/BenefitCard';
+import HelpBar from '../Components/HelpBar';
 import Nav from '../Components/Nav.jsx';
 
 const AddPlant = () => {
@@ -112,6 +113,12 @@ const AddPlant = () => {
                     ))}
                 </div>
             </section>
+
+                <HelpBar 
+                    title="تحتاج مساعدة؟"
+                    subtitle="شاهد دليل إضافة النباتات"
+                    onClick={() => navigate('/Help')}
+                />
 
             <Nav /> 
 

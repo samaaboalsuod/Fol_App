@@ -1,0 +1,56 @@
+.help-bar-container {
+    width: 87%;
+    margin: 0 auto .4rem auto;
+    background-color: var(--cardBg);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.help-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.help-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.help-text-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    text-align: right;
+}
+
+.help-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--darkText) !important;
+    font-family: var(--arabicFont);
+    margin: 0;
+}
+
+.help-subtitle {
+    font-size: 0.95rem;
+    color: var(--darkText);
+    opacity: 0.7;
+    font-family: var(--arabicFont);
+    margin: 0;
+}
+
+.help-bar-left {
+    display: flex;
+    align-items: center;
+}

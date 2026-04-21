@@ -8,6 +8,8 @@ import Logo from '../Assets/logo.svg';
 import Nav from './../Components/Nav';
 import TopHeader from '../Components/TopHeader';
 import PlantCover from '../Components/PlantCover';
+import SectionTitle from '../Components/SectionTitle';
+import PlantStatus from '../Components/PlantStatus';
 
 const PlantDetail = () => {
     const { id } = useParams();
@@ -54,11 +56,20 @@ const PlantDetail = () => {
                 <div className="loading-state">جاري التحميل...</div>
             ) : (
                 <div className="detail-content">
-                    <PlantCover 
+                    <PlantCover
                         photo={plantData?.Plant_Details?.Cover_Photo}
                         nickname={plantData?.Nickname}
                         species={plantData?.Plant_Details?.NameAR}
                     />
+
+                    <section className='warnSec'>
+                        <SectionTitle title="حالة النبات" />
+                        <PlantStatus 
+                            status={plantData?.['Health_Status(AR)']}
+                            healthPercent={plantData?.General_Health}
+                            moisturePercent={plantData?.Soil_Moisture}
+                        />
+                    </section>
                 </div>
             )}
 

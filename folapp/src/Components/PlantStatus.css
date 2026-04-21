@@ -1,0 +1,57 @@
+.statusCard {
+    width: 100%;
+    padding: 1.5rem;
+    background-color: var(--cardBg);
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.statusTopRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.healthDots {
+    display: flex;
+    gap: 6px;
+}
+
+.healthDot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(74, 139, 96, 0.2);
+    border-radius: 50%;
+}
+
+.healthDot.active {
+    background-color: #4A8B60;
+}
+
+.statusLabelGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.statusText {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--darkText);
+    margin: 0;
+    font-family: var(--arabicFont);
+}
+
+.statusBars {
+    display: flex;
+    flex-direction: column;
+}
+
+.warnSec {
+    width: 100% !important;
+    padding: 0 !important;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../Supabase.jsx';
 import { UsersThree, Confetti, PottedPlant, Gear, ArrowLeft, SignOut } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ActionCard from '../Components/ActionCard';
 
 import './Profile.css';
 import './AchievementsCarousel.css';
@@ -205,18 +206,10 @@ useEffect(() => {
         </section>
 
 
-            <div className='settingsCard'>
-                    <div className='settingsRightSide'>
-                        <div className='gearCircle'>
-                            <Gear size={28} weight="fill" color="#FAFAEA" />
-                        </div>
-                        <h2>الإعدادات</h2>
-                    </div>
-
-                    <div className='settingsLeft'>
-                         <ArrowLeft size={24} color="#4A8B60" />
-                    </div>
-            </div>
+            <ActionCard 
+                Icon={Gear} 
+                title="الإعدادات" 
+            />
 
             <div className='logoutCard'>
                     <h2>تسجيل الخروج</h2>

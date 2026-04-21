@@ -14,7 +14,8 @@ import CareIndicatorCard from '../Components/CareIndicatorCard';
 import QuickActionCard from '../Components/QuickActionCard';
 import BenefitCard from '../Components/BenefitCard';
 import LessonOutCard from '../Components/LessonOutCard';
-import { Sun, Drop, Info, Wind, Smiley, SelectionAll } from "@phosphor-icons/react";
+import ActionCard from '../Components/ActionCard';
+import { Sun, Drop, Info, Wind, Smiley, SelectionAll, ClockCounterClockwise } from "@phosphor-icons/react";
 import darkIcon from '../Assets/darkIcon.svg';
 
 const PlantDetail = () => {
@@ -201,6 +202,13 @@ const PlantDetail = () => {
                             ))}
                         </div>
                     </section>
+
+
+                        <ActionCard 
+                            Icon={ClockCounterClockwise}
+                            title="السجل الكامل"
+                            subtitle="عرض كل الأحداث منذ انضمامه لحديقتك"
+                        />
                 </div>
             )}
 

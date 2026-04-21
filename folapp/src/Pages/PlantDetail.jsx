@@ -12,13 +12,15 @@ import SectionTitle from '../Components/SectionTitle';
 import PlantStatus from '../Components/PlantStatus';
 import CareIndicatorCard from '../Components/CareIndicatorCard';
 import QuickActionCard from '../Components/QuickActionCard';
-import { Sun, Drop, Info } from "@phosphor-icons/react";
+import BenefitCard from '../Components/BenefitCard';
+import { Sun, Drop, Info, Wind, Smiley, SelectionAll } from "@phosphor-icons/react";
 import darkIcon from '../Assets/darkIcon.svg';
 
 const PlantDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [plantData, setPlantData] = useState(null);
+    const [benefits, setBenefits] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -33,6 +35,15 @@ const PlantDetail = () => {
 
                 if (error) throw error;
                 setPlantData(data);
+                
+                // Fetch benefits
+                const { data: benefitsData } = await supabase
+                    .from('Plant_Benefits')
+                    .select('*')
+                    .eq('plant_id', data.plant_id);
+                
+                if (benefitsData) setBenefits(benefitsData);
+
             } catch (err) {
                 console.error("Error fetching plant details:", err.message);
             } finally {
@@ -42,6 +53,15 @@ const PlantDetail = () => {
 
         if (id) fetchPlantDetails();
     }, [id]);
+
+    const getBenefitIcon = (key) => {
+        switch (key) {
+            case 'air': return Wind;
+            case 'mood': return Smiley;
+            case 'easy': return SelectionAll;
+            default: return Wind;
+        }
+    };
 
     const handleShare = () => {
         // Implement share logic if needed
@@ -121,6 +141,24 @@ const PlantDetail = () => {
                                 img={darkIcon}
                                 title="اسأل خبير"
                             />
+                        </div>
+                    </section>
+
+                    <section className='warnSec'>
+                        <SectionTitle title="فوائد هذا النبات" />
+                        <div className='benefitsColumn'>
+                            {(benefits.length > 0 ? benefits : [
+                                { id: 'd1', benefit_text_ar: 'تنقية الهواء', benefit_desc_ar: 'يزيل السموم من الهواء', icon_key: 'air' },
+                                { id: 'd2', benefit_text_ar: 'تحسين المزاج', benefit_desc_ar: 'يساعد على الاسترخاء', icon_key: 'mood' },
+                                { id: 'd3', benefit_text_ar: 'سهل الإكثار', benefit_desc_ar: 'يمكن زراعة فروع جديدة بسهولة', icon_key: 'easy' }
+                            ]).map((benefit, index) => (
+                                <BenefitCard 
+                                    key={benefit.id}
+                                    Icon={getBenefitIcon(benefit.icon_key)}
+                                    title={benefit.benefit_text_ar}
+                                    description={benefit.benefit_desc_ar}
+                                />
+                            ))}
                         </div>
                     </section>
                 </div>

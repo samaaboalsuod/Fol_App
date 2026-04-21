@@ -205,7 +205,7 @@ useEffect(() => {
         </section>
 
 
-                <div className='settingsCard'>
+            <div className='settingsCard'>
                     <div className='settingsRightSide'>
                         <div className='gearCircle'>
                             <Gear size={28} weight="fill" color="#FAFAEA" />
@@ -216,12 +216,12 @@ useEffect(() => {
                     <div className='settingsLeft'>
                          <ArrowLeft size={24} color="#4A8B60" />
                     </div>
-                </div>
+            </div>
 
-                <div className='logoutCard'>
+            <div className='logoutCard'>
                     <h2>تسجيل الخروج</h2>
                     <SignOut size={28} color="#D26B76" mirrored={true} />
-                </div>
+            </div>
 
 
 

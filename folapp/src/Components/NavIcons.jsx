@@ -11,7 +11,7 @@ export const NavIcons = [
     path: "/MyPlants",
     label: "MyPlants",
     icon: PottedPlant,
-    activePaths: ["/MyPlants", "/PlantDetails"], 
+    activePaths: ["/MyPlants", "/PlantDetail"], 
   },
   {
     path: "/Community", 

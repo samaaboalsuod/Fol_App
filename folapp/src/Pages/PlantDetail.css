@@ -1,0 +1,13 @@
+.detail-content {
+    width: 100%;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+}
+
+.loading-state {
+    width: 100%;
+    text-align: center;
+    color: var(--lightText);
+    margin-top: 5rem;
+    font-family: var(--arabicFont);
+}

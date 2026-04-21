@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx'; 
 import { Sun, Drop, TrendUp, Plus } from '@phosphor-icons/react';
 
@@ -18,7 +19,7 @@ import GeneralCard from './../Components/GeneralCard';
 import HealthIndicators from '../Components/HealthIndicators.jsx';
 
 const MyPlants = () => {
-
+    const navigate = useNavigate();
     const userId = 1;
         const [allPlants, setAllPlants] = useState([]);
         const [activeFilter, setActiveFilter] = useState('الكل');
@@ -147,7 +148,7 @@ useEffect(() => {
 
         </section>
 
-        <section className='addCard'>
+        <section className='addCard' onClick={() => navigate('/AddPlant')}>
             <div className='plusCircle'>
                 <Plus size={32} color='#fff' />
             </div>

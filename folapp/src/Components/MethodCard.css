@@ -1,0 +1,35 @@
+.add-plant-method-card {
+    width: 100%;
+    background: var(--transBg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.method-icon-cont {
+    margin-bottom: 0.2rem;
+}
+
+.method-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--lightText);
+    font-family: var(--arabicFont);
+    margin: 0;
+}
+
+.method-desc {
+    font-size: 0.95rem;
+    color: var(--lightText);
+    opacity: 0.7;
+    font-family: var(--arabicFont);
+    margin: 0;
+}

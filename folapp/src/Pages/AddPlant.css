@@ -1,0 +1,14 @@
+.add-plant-page {
+    padding-bottom: 80px; /* Space for Nav */
+}
+
+.methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Ensure the title section has enough breathing room */
+.add-plant-page .title {
+    margin-bottom: 2rem;
+}

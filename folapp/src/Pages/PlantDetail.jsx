@@ -13,6 +13,7 @@ import PlantStatus from '../Components/PlantStatus';
 import CareIndicatorCard from '../Components/CareIndicatorCard';
 import QuickActionCard from '../Components/QuickActionCard';
 import BenefitCard from '../Components/BenefitCard';
+import LessonOutCard from '../Components/LessonOutCard';
 import { Sun, Drop, Info, Wind, Smiley, SelectionAll } from "@phosphor-icons/react";
 import darkIcon from '../Assets/darkIcon.svg';
 
@@ -21,6 +22,7 @@ const PlantDetail = () => {
     const navigate = useNavigate();
     const [plantData, setPlantData] = useState(null);
     const [benefits, setBenefits] = useState([]);
+    const [lessons, setLessons] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -43,6 +45,25 @@ const PlantDetail = () => {
                     .eq('plant_id', data.plant_id);
                 
                 if (benefitsData) setBenefits(benefitsData);
+
+                // Fetch lessons
+                const { data: lessonsData } = await supabase
+                    .from('Plant_Lessons')
+                    .select('*')
+                    .eq('plant_id', data.plant_id);
+                
+                if (lessonsData) {
+                    const mappedLessons = lessonsData.map(lesson => ({
+                        id: lesson.id,
+                        title: lesson.title_ar,
+                        subtitle: lesson.subtitle_ar,
+                        duration: `${lesson.duration_min} دقائق`,
+                        lesson_type: "دليل شامل",
+                        img_url: lesson.thumbnail_url,
+                        alt_text: lesson.title_ar
+                    }));
+                    setLessons(mappedLessons);
+                }
 
             } catch (err) {
                 console.error("Error fetching plant details:", err.message);
@@ -158,6 +179,25 @@ const PlantDetail = () => {
                                     title={benefit.benefit_text_ar}
                                     description={benefit.benefit_desc_ar}
                                 />
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className='warnSec'>
+                        <SectionTitle title="دروس متعلقة بالنبات" more="المزيد" />
+                        <div className='cardCol'>
+                            {(lessons.length > 0 ? lessons : [
+                                {
+                                    id: 'dl1',
+                                    title: 'كيف تعتني بالمونستيرا',
+                                    subtitle: 'دليل شامل للعناية',
+                                    duration: '10 دقائق',
+                                    lesson_type: 'دليل شامل',
+                                    img_url: 'https://otnuzlslyxxpczlmiytz.supabase.co/storage/v1/object/public/Assets/Plants/MonsteraPlant.jpg',
+                                    alt_text: 'Monstera Care'
+                                }
+                            ]).map((lesson) => (
+                                <LessonOutCard key={lesson.id} data={lesson} />
                             ))}
                         </div>
                     </section>

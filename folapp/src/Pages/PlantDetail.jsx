@@ -11,7 +11,9 @@ import PlantCover from '../Components/PlantCover';
 import SectionTitle from '../Components/SectionTitle';
 import PlantStatus from '../Components/PlantStatus';
 import CareIndicatorCard from '../Components/CareIndicatorCard';
-import { Sun, Drop } from "@phosphor-icons/react";
+import QuickActionCard from '../Components/QuickActionCard';
+import { Sun, Drop, Info } from "@phosphor-icons/react";
+import darkIcon from '../Assets/darkIcon.svg';
 
 const PlantDetail = () => {
     const { id } = useParams();
@@ -95,6 +97,29 @@ const PlantDetail = () => {
                                     : plantData?.Location?.room_ar || "غرفة المعيشة"
                                 }
                                 iconColor="#F4B942"
+                            />
+                        </div>
+                    </section>
+
+                    <section className='warnSec'>
+                        <SectionTitle title="إجراءات سريعة" />
+                        <div className='cardRow'>
+
+                            <QuickActionCard 
+                                Icon={Drop}
+                                title="سقاية"
+                                color="#4A8B60"
+                            />
+
+                            <QuickActionCard 
+                                Icon={Info}
+                                title="ملاحظات"
+                                color="#F4B942"
+                            />
+
+                            <QuickActionCard 
+                                img={darkIcon}
+                                title="اسأل خبير"
                             />
                         </div>
                     </section>

@@ -1,4 +1,4 @@
-:root{
+:root {
     --lightText: #FAFAEA;
     --darkText: #082F19;
     --bgGradient: radial-gradient(50% 50% at 50% 50%, #0F3F24 0%, #082F19 100%);
@@ -9,26 +9,28 @@
     --tagBg: #c8d6b3;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
 }
 
-body{
+body {
     background-color: rgb(2, 33, 8);
     min-height: 100vh;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;  
-    overflow-x: hidden; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: hidden;
 }
+
 body::-webkit-scrollbar {
     display: none;
 }
 
-html, body {
-    scrollbar-width: none; 
+html,
+body {
+    scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
@@ -38,13 +40,13 @@ main {
     width: 412px;
     min-height: 915px;
     background: var(--bgGradient);
-    position: relative; 
+    position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
-.header{
+.header {
     width: 100%;
     padding: 1.5rem 2rem;
     box-sizing: border-box;
@@ -55,14 +57,18 @@ main {
 
 }
 
-a, .cardLink {
-    text-decoration: none !important; /* Removes underlines */
-    color: inherit !important;        /* Prevents the default blue color */
-    display: contents;               /* CRITICAL: Makes the link "invisible" to layout */
+a,
+.cardLink {
+    text-decoration: none !important;
+    /* Removes underlines */
+    color: inherit !important;
+    /* Prevents the default blue color */
+    display: contents;
+    /* CRITICAL: Makes the link "invisible" to layout */
 }
 
 /* ONLY FOR PAGES TITLES  24 BOLD */
-h1{
+h1 {
     font-family: var(--arabicFont);
     color: var(--lightText);
     font-size: 1.6rem;
@@ -71,14 +77,14 @@ h1{
 }
 
 /* SECTIONS TITLES AND MORE */
-h2{
+h2 {
     font-family: var(--arabicFont);
     color: var(--lightText);
     font-size: 1.2rem;
     font-weight: 500;
 }
 
-h4{
+h4 {
     font-family: var(--arabicFont);
     color: var(--darkText);
     font-size: 1.2rem;
@@ -86,7 +92,7 @@ h4{
 }
 
 /* SAME P BUT DARK */
-h6{
+h6 {
     font-family: var(--arabicFont);
     color: var(--darkText);
     font-size: .9rem;
@@ -94,7 +100,7 @@ h6{
     opacity: .8;
 }
 
-p{
+p {
     font-family: var(--arabicFont);
     color: var(--lightText);
     font-size: .9rem;
@@ -102,12 +108,12 @@ p{
     opacity: .8;
 }
 
-.taskSec{
+.taskSec {
     width: 100%;
     padding: 0 2rem;
 }
 
-.warnSec{
+.warnSec {
     margin: 2rem 0;
     width: 100%;
     padding: 0 2rem;
@@ -117,7 +123,7 @@ p{
     gap: 1.4rem;
 }
 
-.cardCol{
+.cardCol {
     width: 100%;
     display: flex;
     flex-direction: column;

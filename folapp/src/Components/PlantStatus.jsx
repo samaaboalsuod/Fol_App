@@ -17,8 +17,8 @@ const PlantStatus = ({ status, healthPercent, moisturePercent }) => {
                     ))}
                 </div>
                 <div className="statusLabelGroup">
-                    <h2 className="statusText">{status}</h2>
                     <Heart size={32} weight="fill" color="#4A8B60" />
+                    <h2 className="statusText">{status}</h2>
                 </div>
             </div>
 

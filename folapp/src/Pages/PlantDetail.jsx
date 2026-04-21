@@ -10,6 +10,8 @@ import TopHeader from '../Components/TopHeader';
 import PlantCover from '../Components/PlantCover';
 import SectionTitle from '../Components/SectionTitle';
 import PlantStatus from '../Components/PlantStatus';
+import CareIndicatorCard from '../Components/CareIndicatorCard';
+import { Sun, Drop } from "@phosphor-icons/react";
 
 const PlantDetail = () => {
     const { id } = useParams();
@@ -69,6 +71,32 @@ const PlantDetail = () => {
                             healthPercent={plantData?.General_Health}
                             moisturePercent={plantData?.Soil_Moisture}
                         />
+                    </section>
+
+                    <section className='warnSec'>
+                        <SectionTitle title="مؤشرات العناية" />
+                        <div className='cardRow'>
+                            <CareIndicatorCard 
+                                Icon={Drop}
+                                title="السقاية"
+                                subTitle="آخر سقاية"
+                                value={plantData?.Last_Watered ? new Date(plantData.Last_Watered).toLocaleDateString('ar-EG', { weekday: 'long' }).split(',')[0] : "---"}
+                                footer={`القادمة: بعد ${plantData?.Next_Watering_Days || 0} أيام`}
+                                iconColor="#4A8B60"
+                            />
+                            <CareIndicatorCard 
+                                Icon={Sun}
+                                title="الإضاءة"
+                                subTitle="المستوى"
+                                value={plantData?.Light_Level_AR || "متوسطة"}
+                                footer={
+                                    typeof plantData?.Location === 'string' 
+                                    ? JSON.parse(plantData.Location).room_ar 
+                                    : plantData?.Location?.room_ar || "غرفة المعيشة"
+                                }
+                                iconColor="#F4B942"
+                            />
+                        </div>
                     </section>
                 </div>
             )}

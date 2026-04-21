@@ -1,6 +1,6 @@
 .statusCard {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.2rem;
     background-color: var(--cardBg);
     border-radius: 16px;
     box-sizing: border-box;
@@ -35,7 +35,7 @@
 .statusLabelGroup {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.4rem;
 }
 
 .statusText {
@@ -49,9 +49,4 @@
 .statusBars {
     display: flex;
     flex-direction: column;
-}
-
-.warnSec {
-    width: 100% !important;
-    padding: 0 !important;
 }

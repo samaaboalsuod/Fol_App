@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx';
-import { CaretRight, CameraPlus, Hash, PencilSimple } from "@phosphor-icons/react";
+import { CaretRight, CameraPlus, Hash, PencilSimple, Camera, Flower, MapPin, Drop } from "@phosphor-icons/react";
 import './AddPlant.css';
 
 import TopHeader from '../Components/TopHeader';
 import PageTitle from '../Components/PageTitle';
 import SectionTitle from '../Components/SectionTitle';
 import MethodCard from '../Components/MethodCard';
+import BenefitCard from '../Components/BenefitCard';
+import Nav from '../Components/Nav.jsx';
 
 const AddPlant = () => {
     const navigate = useNavigate();
     const [pageInfo, setPageInfo] = useState({ title: '', desc: '' });
     const [methods, setMethods] = useState([]);
+    const [advice, setAdvice] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -39,6 +42,16 @@ const AddPlant = () => {
                     setMethods(methodsData);
                 }
 
+                // Fetch Advice (Rows 12, 13, 14, 15) from Plant_Benefits
+                const { data: adviceData } = await supabase
+                    .from('Plant_Benefits')
+                    .select('*')
+                    .in('id', [12, 13, 14, 15]);
+                
+                if (adviceData) {
+                    setAdvice(adviceData);
+                }
+
             } catch (err) {
                 console.error("Error fetching AddPlant data:", err.message);
             } finally {
@@ -54,6 +67,11 @@ const AddPlant = () => {
             case 'camera_qr': return CameraPlus;
             case 'hash_code': return Hash;
             case 'edit_pencil': return PencilSimple;
+            // Advice Icons
+            case 'camera_outline': return Camera;
+            case 'flower_petal': return Flower;
+            case 'location_pin': return MapPin;
+            case 'water_drop': return Drop;
             default: return CameraPlus;
         }
     };
@@ -80,6 +98,23 @@ const AddPlant = () => {
                     ))}
                 </div>
             </section>
+
+            <section className="warnSec">
+                <SectionTitle title="نصائح لإضافة النبات" />
+                <div className="advice-list">
+                    {advice.map((item, index) => (
+                        <BenefitCard 
+                            key={item.id}
+                            Icon={getIcon(item.icon_key)}
+                            title={item.benefit_text_ar}
+                            description={item.benefit_desc_ar}
+                        />
+                    ))}
+                </div>
+            </section>
+
+            <Nav /> 
+
         </main>
     );
 };

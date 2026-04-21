@@ -5,13 +5,13 @@ export const NavIcons = [
     path: "/",
     label: "Home",
     icon: House,
-    activePaths: ["^/$"], // Regex for "Exactly /"
+    activePaths: ["^/$"], // Regex for "Exactly / "
   },
   {
     path: "/MyPlants",
     label: "MyPlants",
     icon: PottedPlant,
-    activePaths: ["/MyPlants", "/PlantDetail"], 
+    activePaths: ["/MyPlants", "/PlantDetail", "/AddPlant"], 
   },
   {
     path: "/Community", 

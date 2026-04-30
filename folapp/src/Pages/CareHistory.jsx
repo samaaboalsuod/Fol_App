@@ -248,9 +248,9 @@ const CareHistory = () => {
                 <WateringHistoryCard activities={activities} />
             </section>
 
-            {alerts.length > 0 && (
-                <section className='warnSec'>
-                    <SectionTitle title="التنبيهات الصحية" more="عرض الكل" />
+            <section className='warnSec'>
+                <SectionTitle title="التنبيهات الصحية" more={alerts.length > 0 ? "عرض الكل" : undefined} />
+                {alerts.length > 0 ? (
                     <div className='benefitsColumn'>
                         {alerts.map((alert) => (
                             <BenefitCard
@@ -261,12 +261,16 @@ const CareHistory = () => {
                             />
                         ))}
                     </div>
-                </section>
-            )}
+                ) : (
+                    <div className='empty-section-card'>
+                        <p>لا توجد تنبيهات حالياً</p>
+                    </div>
+                )}
+            </section>
 
-            {plantQuestions.length > 0 && (
-                <section className='warnSec'>
-                    <SectionTitle title="إجابات أسئلتك" more="عرض الكل" />
+            <section className='warnSec'>
+                <SectionTitle title="إجابات أسئلتك" more={plantQuestions.length > 0 ? "عرض الكل" : undefined} />
+                {plantQuestions.length > 0 ? (
                     <div className='askRow'>
                         {plantQuestions.map((question) => (
                             <AskServiceCard
@@ -277,8 +281,12 @@ const CareHistory = () => {
                             />
                         ))}
                     </div>
-                </section>
-            )}
+                ) : (
+                    <div className='empty-section-card'>
+                        <p>لا توجد أسئلة حتى الآن</p>
+                    </div>
+                )}
+            </section>
 
             {gallery.length > 0 && (
                 <section className='warnSec'>

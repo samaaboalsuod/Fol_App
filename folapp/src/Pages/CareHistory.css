@@ -108,3 +108,27 @@
 .tile-5 {
     display: none;
 }
+
+.empty-section-card {
+    width: 100%;
+    min-height: 92px;
+    padding: 1.2rem;
+    box-sizing: border-box;
+    border-radius: 24px 24px 24px 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--transBg);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.empty-section-card p {
+    margin: 0;
+    color: var(--lightText);
+    font-family: var(--arabicFont);
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: .75;
+}

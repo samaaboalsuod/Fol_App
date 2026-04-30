@@ -15,7 +15,7 @@ import QuickActionCard from '../Components/QuickActionCard';
 import BenefitCard from '../Components/BenefitCard';
 import LessonOutCard from '../Components/LessonOutCard';
 import ActionCard from '../Components/ActionCard';
-import { Sun, Drop, Info, Wind, Smiley, SelectionAll, ClockCounterClockwise } from "@phosphor-icons/react";
+import { Sun, Drop, Info, Wind, Smiley, SelectionAll, ClockCounterClockwise, Leaf } from "@phosphor-icons/react";
 import darkIcon from '../Assets/darkIcon.svg';
 
 const PlantDetail = () => {
@@ -43,7 +43,7 @@ const PlantDetail = () => {
                 const { data: benefitsData } = await supabase
                     .from('Plant_Benefits')
                     .select('*')
-                    .eq('plant_id', data.plant_id);
+                    .eq('plant_id', data.Plant);
                 
                 if (benefitsData) setBenefits(benefitsData);
 
@@ -51,19 +51,27 @@ const PlantDetail = () => {
                 const { data: lessonsData } = await supabase
                     .from('Plant_Lessons')
                     .select('*')
-                    .eq('plant_id', data.plant_id);
+                    .eq('plant_id', data.Plant);
                 
                 if (lessonsData) {
-                    const mappedLessons = lessonsData.map(lesson => ({
-                        id: lesson.id,
-                        title: lesson.title_ar,
-                        subtitle: lesson.subtitle_ar,
-                        duration: `${lesson.duration_min} دقائق`,
-                        lesson_type: "دليل شامل",
-                        img_url: lesson.thumbnail_url,
-                        alt_text: lesson.title_ar
-                    }));
-                    setLessons(mappedLessons);
+                    const uniqueLessons = [];
+                    const seenTitles = new Set();
+
+                    lessonsData.forEach(lesson => {
+                        if (!seenTitles.has(lesson.title_ar)) {
+                            seenTitles.add(lesson.title_ar);
+                            uniqueLessons.push({
+                                id: lesson.id,
+                                title: lesson.title_ar,
+                                subtitle: lesson.subtitle_ar,
+                                duration: `${lesson.duration_min} دقائق`,
+                                lesson_type: "دليل شامل",
+                                img_url: lesson.thumbnail_url,
+                                alt_text: lesson.title_ar
+                            });
+                        }
+                    });
+                    setLessons(uniqueLessons);
                 }
 
             } catch (err) {
@@ -81,6 +89,7 @@ const PlantDetail = () => {
             case 'air': return Wind;
             case 'mood': return Smiley;
             case 'easy': return SelectionAll;
+            case 'leaf': return Leaf;
             default: return Wind;
         }
     };
@@ -166,42 +175,32 @@ const PlantDetail = () => {
                         </div>
                     </section>
 
-                    <section className='warnSec'>
-                        <SectionTitle title="فوائد هذا النبات" />
-                        <div className='benefitsColumn'>
-                            {(benefits.length > 0 ? benefits : [
-                                { id: 'd1', benefit_text_ar: 'تنقية الهواء', benefit_desc_ar: 'يزيل السموم من الهواء', icon_key: 'air' },
-                                { id: 'd2', benefit_text_ar: 'تحسين المزاج', benefit_desc_ar: 'يساعد على الاسترخاء', icon_key: 'mood' },
-                                { id: 'd3', benefit_text_ar: 'سهل الإكثار', benefit_desc_ar: 'يمكن زراعة فروع جديدة بسهولة', icon_key: 'easy' }
-                            ]).map((benefit, index) => (
-                                <BenefitCard 
-                                    key={benefit.id}
-                                    Icon={getBenefitIcon(benefit.icon_key)}
-                                    title={benefit.benefit_text_ar}
-                                    description={benefit.benefit_desc_ar}
-                                />
-                            ))}
-                        </div>
-                    </section>
+                    {benefits.length > 0 && (
+                        <section className='warnSec'>
+                            <SectionTitle title="فوائد هذا النبات" />
+                            <div className='benefitsColumn'>
+                                {benefits.map((benefit) => (
+                                    <BenefitCard 
+                                        key={benefit.id}
+                                        Icon={getBenefitIcon(benefit.icon_key)}
+                                        title={benefit.benefit_text_ar}
+                                        description={benefit.benefit_desc_ar}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
-                    <section className='warnSec'>
-                        <SectionTitle title="دروس متعلقة بالنبات" more="المزيد" />
-                        <div className='cardCol'>
-                            {(lessons.length > 0 ? lessons : [
-                                {
-                                    id: 'dl1',
-                                    title: 'كيف تعتني بالمونستيرا',
-                                    subtitle: 'دليل شامل للعناية',
-                                    duration: '10 دقائق',
-                                    lesson_type: 'دليل شامل',
-                                    img_url: 'https://otnuzlslyxxpczlmiytz.supabase.co/storage/v1/object/public/Assets/Plants/MonsteraPlant.jpg',
-                                    alt_text: 'Monstera Care'
-                                }
-                            ]).map((lesson) => (
-                                <LessonOutCard key={lesson.id} data={lesson} />
-                            ))}
-                        </div>
-                    </section>
+                    {lessons.length > 0 && (
+                        <section className='warnSec'>
+                            <SectionTitle title="دروس متعلقة بالنبات" more="المزيد" />
+                            <div className='cardCol'>
+                                {lessons.map((lesson) => (
+                                    <LessonOutCard key={lesson.id} data={lesson} />
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
 
                         <ActionCard 

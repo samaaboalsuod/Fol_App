@@ -20,6 +20,7 @@ const CareHistory = () => {
     const [modelUrl, setModelUrl] = useState('');
     const [alerts, setAlerts] = useState([]);
     const [plantQuestions, setPlantQuestions] = useState([]);
+    const [gallery, setGallery] = useState([]);
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modelLoading, setModelLoading] = useState(false);
@@ -49,6 +50,7 @@ const CareHistory = () => {
                 if (userPlant) {
                     setPlantName(userPlant.Nickname || userPlant.Plant_Details?.NameAR);
                     setModelUrl(userPlant.Plant_Details?.["3DModel"]);
+                    setGallery(parseGallery(userPlant.Gallery));
 
                     const plantId = userPlant.Plant;
                     const [
@@ -178,6 +180,19 @@ const CareHistory = () => {
         };
     }, [modelUrl]);
 
+    const parseGallery = (galleryValue) => {
+        if (!galleryValue) return [];
+        if (Array.isArray(galleryValue)) return galleryValue.filter(Boolean);
+
+        try {
+            const parsedGallery = JSON.parse(galleryValue);
+            return Array.isArray(parsedGallery) ? parsedGallery.filter(Boolean) : [];
+        } catch (error) {
+            console.warn('Unable to parse plant gallery:', error);
+            return [];
+        }
+    };
+
     const getAlertIcon = (alert) => {
         const title = alert.TitleAR || '';
         const message = alert.MessageAR || '';
@@ -260,6 +275,19 @@ const CareHistory = () => {
                                 className={question.className}
                                 variant="question"
                             />
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {gallery.length > 0 && (
+                <section className='warnSec'>
+                    <SectionTitle title="صور للنبات" more="عرض الكل" />
+                    <div className='plant-gallery-grid'>
+                        {gallery.slice(0, 5).map((photo, index) => (
+                            <div className={`gallery-tile tile-${index + 1}`} key={`${photo}-${index}`}>
+                                <img src={photo} alt={`${plantName || 'النبات'} ${index + 1}`} />
+                            </div>
                         ))}
                     </div>
                 </section>

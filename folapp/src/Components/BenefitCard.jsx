@@ -1,12 +1,16 @@
 import React from 'react';
 import './BenefitCard.css';
 
-const BenefitCard = ({ Icon, title, description, isFlipped }) => {
+const BenefitCard = ({ Icon, img, alt = '', title, description, isFlipped }) => {
     return (
         <div className={`benefitCard ${isFlipped ? 'flipped' : ''}`}>
             
             <div className="benefitIconCircle">
-                <Icon size={32} weight="regular" color="#FAFAEA" />
+                {img ? (
+                    <img src={img} alt={alt} />
+                ) : (
+                    Icon && <Icon size={32} weight="regular" color="#FAFAEA" />
+                )}
             </div>
 
             <div className="benefitData">

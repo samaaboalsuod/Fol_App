@@ -1,0 +1,17 @@
+.care-history-page {
+    padding-bottom: 100px;
+    font-family: var(--arabicFont);
+}
+
+.title {
+    margin-top: 1rem;
+}
+
+.model-section {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}

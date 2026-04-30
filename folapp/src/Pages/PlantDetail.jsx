@@ -207,6 +207,7 @@ const PlantDetail = () => {
                             Icon={ClockCounterClockwise}
                             title="السجل الكامل"
                             subtitle="عرض كل الأحداث منذ انضمامه لحديقتك"
+                            onClick={() => navigate(`/CareHistory/${id}`)}
                         />
                 </div>
             )}

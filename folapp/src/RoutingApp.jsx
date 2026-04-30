@@ -9,6 +9,7 @@ import AskService from './Pages/AskService';
 import Profile from './Pages/Profile';
 import PlantDetail from './Pages/PlantDetail';
 import AddPlant from './Pages/AddPlant';
+import CareHistory from './Pages/CareHistory';
 
 
 
@@ -29,6 +30,7 @@ const RoutingApp = () => {
                 <Route path='/Profile' element={<Profile />} />
                 <Route path='/PlantDetail/:id' element={<PlantDetail />} />
                 <Route path='/AddPlant' element={<AddPlant />} />
+                <Route path='/CareHistory/:id' element={<CareHistory />} />
 
 
             </Routes>

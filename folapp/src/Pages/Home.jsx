@@ -45,7 +45,8 @@ useEffect(() => {
                 .from('Plant_Alerts')
                 .select('*')
                 .eq('IsActive', true)
-                .order('created_at', { ascending: false });
+                .order('created_at', { ascending: false })
+                .limit(2);
             setAlerts(alertsData || []);
 
             // Fetch Featured Community Post (ID: 2)

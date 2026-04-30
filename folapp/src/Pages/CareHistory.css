@@ -43,3 +43,13 @@
 .model-error {
     color: #F4B942;
 }
+
+.care-history-page .askRow {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.care-history-page .askRow .askCard {
+    flex: 1;
+}

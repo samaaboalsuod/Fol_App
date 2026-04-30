@@ -9,6 +9,7 @@ import PageTitle from '../Components/PageTitle';
 import SectionTitle from '../Components/SectionTitle';
 import WateringHistoryCard from '../Components/WateringHistoryCard';
 import BenefitCard from '../Components/BenefitCard';
+import AskServiceCard from '../Components/AskServiceCard';
 import { CloudRain, FirstAid, Leaf, Sun, ThermometerHot, SprayBottle } from "@phosphor-icons/react";
 
 const CareHistory = () => {
@@ -18,6 +19,7 @@ const CareHistory = () => {
     const [plantName, setPlantName] = useState('');
     const [modelUrl, setModelUrl] = useState('');
     const [alerts, setAlerts] = useState([]);
+    const [plantQuestions, setPlantQuestions] = useState([]);
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modelLoading, setModelLoading] = useState(false);
@@ -48,14 +50,74 @@ const CareHistory = () => {
                     setPlantName(userPlant.Nickname || userPlant.Plant_Details?.NameAR);
                     setModelUrl(userPlant.Plant_Details?.["3DModel"]);
 
-                    const { data: alertsData } = await supabase
-                        .from('Plant_Alerts')
-                        .select('*')
-                        .eq('Plant_ID', userPlant.Plant)
-                        .eq('IsActive', true)
-                        .order('created_at', { ascending: false });
+                    const plantId = userPlant.Plant;
+                    const [
+                        { data: alertsData },
+                        { data: aiQuestionsData },
+                        { data: expertQuestionsData },
+                        { data: serviceIconsData }
+                    ] = await Promise.all([
+                        supabase
+                            .from('Plant_Alerts')
+                            .select('*')
+                            .eq('Plant_ID', plantId)
+                            .eq('IsActive', true)
+                            .order('created_at', { ascending: false }),
+                        supabase
+                            .from('ai_messages')
+                            .select('id, created_at, content')
+                            .eq('Plant_ID', plantId)
+                            .eq('service_id', 3)
+                            .order('created_at', { ascending: false })
+                            .limit(1),
+                        supabase
+                            .from('Expert_Requests')
+                            .select('id, created_at, QuestionAR, Responser, Responser_TitleAR')
+                            .eq('Plant_ID', plantId)
+                            .order('created_at', { ascending: false })
+                            .limit(1),
+                        supabase
+                            .from('Asking_Service')
+                            .select('id, HIcon, alt')
+                            .in('id', [2, 3])
+                    ]);
+
+                    const serviceIcons = (serviceIconsData || []).reduce((icons, service) => {
+                        icons[service.id] = service;
+                        return icons;
+                    }, {});
+                    const latestQuestions = [];
+                    const latestExpertQuestion = expertQuestionsData?.[0];
+                    const latestAiQuestion = aiQuestionsData?.[0];
+
+                    if (latestAiQuestion) {
+                        latestQuestions.push({
+                            id: `ai-${latestAiQuestion.id}`,
+                            className: 'ai-card',
+                            data: {
+                                NameAR: latestAiQuestion.content,
+                                AppDisc: 'فل',
+                                HIcon: serviceIcons[3]?.HIcon,
+                                alt: serviceIcons[3]?.alt
+                            }
+                        });
+                    }
+
+                    if (latestExpertQuestion) {
+                        latestQuestions.push({
+                            id: `expert-${latestExpertQuestion.id}`,
+                            className: 'chat-card',
+                            data: {
+                                NameAR: latestExpertQuestion.QuestionAR,
+                                AppDisc: `${latestExpertQuestion.Responser || 'أحد خبراء فل'} ${latestExpertQuestion.Responser_TitleAR || ''}`.trim(),
+                                HIcon: serviceIcons[2]?.HIcon,
+                                alt: serviceIcons[2]?.alt
+                            }
+                        });
+                    }
 
                     setAlerts(alertsData || []);
+                    setPlantQuestions(latestQuestions);
                 }
 
                 // 3. Fetch Watering Activities
@@ -181,6 +243,22 @@ const CareHistory = () => {
                                 Icon={getAlertIcon(alert)}
                                 title={alert.TitleAR}
                                 description={alert.MessageAR}
+                            />
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {plantQuestions.length > 0 && (
+                <section className='warnSec'>
+                    <SectionTitle title="إجابات أسئلتك" more="عرض الكل" />
+                    <div className='askRow'>
+                        {plantQuestions.map((question) => (
+                            <AskServiceCard
+                                key={question.id}
+                                data={question.data}
+                                className={question.className}
+                                variant="question"
                             />
                         ))}
                     </div>

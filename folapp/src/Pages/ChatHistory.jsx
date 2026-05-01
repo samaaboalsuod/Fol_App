@@ -8,7 +8,7 @@ import PageTitle from '../Components/PageTitle';
 import SectionTitle from '../Components/SectionTitle';
 import ChatHistoryCard from '../Components/ChatHistoryCard';
 import Nav from '../Components/Nav';
-import { Drop, Sun } from '@phosphor-icons/react';
+import { Robot, Chats } from '@phosphor-icons/react';
 
 
 const ChatHistory = () => {
@@ -32,7 +32,7 @@ const ChatHistory = () => {
                         });
                     }
 
-                    const [{ data: aiMessages }, { data: expertRequests }] = await Promise.all([
+                    const [{ data: aiMessages }, { data: expertRequests }, { data: servicesData }] = await Promise.all([
                         supabase
                             .from('ai_messages')
                             .select('id, created_at, content')
@@ -43,8 +43,15 @@ const ChatHistory = () => {
                             .from('Expert_Requests')
                             .select('id, created_at, QuestionAR, ResponseAR, Responser_TitleAR, Responser')
                             .order('created_at', { ascending: false })
-                            .limit(3)
+                            .limit(3),
+                        supabase
+                            .from('Asking_Service')
+                            .select('id, HIcon')
+                            .in('id', [2, 3])
                     ]);
+
+                    const aiIconUrl = servicesData?.find(s => s.id === 3)?.HIcon || Robot;
+                    const expertIconUrl = servicesData?.find(s => s.id === 2)?.HIcon || Chats;
 
                     const cardsData = [];
 
@@ -55,7 +62,7 @@ const ChatHistory = () => {
                                 date: formatDate(msg.created_at),
                                 title: msg.content.length > 40 ? msg.content.slice(0, 40) + '...' : msg.content,
                                 subtitle: 'رسالة شخصية من فل',
-                                Icon: Drop
+                                Icon: aiIconUrl
                             });
                         });
                     }
@@ -72,7 +79,7 @@ const ChatHistory = () => {
                                 date: formatDate(req.created_at),
                                 title: titleText.length > 40 ? titleText.slice(0, 40) + '...' : titleText,
                                 subtitle: subtitleText,
-                                Icon: Sun
+                                Icon: expertIconUrl
                             });
                         });
                     }

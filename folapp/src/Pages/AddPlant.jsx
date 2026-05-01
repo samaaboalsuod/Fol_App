@@ -11,6 +11,7 @@ import MethodCard from '../Components/MethodCard';
 import BenefitCard from '../Components/BenefitCard';
 import HelpBar from '../Components/HelpBar';
 import Nav from '../Components/Nav.jsx';
+import OrderCodeModal from '../Components/OrderCodeModal.jsx';
 
 const AddPlant = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const AddPlant = () => {
     const [methods, setMethods] = useState([]);
     const [advice, setAdvice] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -94,7 +96,13 @@ const AddPlant = () => {
                             Icon={getIcon(method.icon_key)}
                             title={method.title_ar}
                             desc={method.desc_ar}
-                            onClick={() => navigate(method.route_path)}
+                            onClick={() => {
+                                if (method.icon_key === 'hash_code') {
+                                    setIsModalOpen(true);
+                                } else {
+                                    navigate(method.route_path);
+                                }
+                            }}
                         />
                     ))}
                 </div>
@@ -122,6 +130,10 @@ const AddPlant = () => {
 
             <Nav /> 
 
+            <OrderCodeModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+            />
         </main>
     );
 };

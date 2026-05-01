@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../Supabase.jsx'; 
+import { useNavigate } from 'react-router-dom';
 import { User } from '@phosphor-icons/react';
 
 import './Home.css';
@@ -15,6 +16,7 @@ import CommunityPost from '../Components/CommunityPost.jsx';
 import SuggestedCard from '../Components/SuggestedCard.jsx';
 
 const Home = () => {
+    const navigate = useNavigate();
 
     const userId = 1;
     const [tasks, setTasks] = useState([]);
@@ -114,8 +116,8 @@ useEffect(() => {
     </section>
 
     <section className='warnSec'>
-        <SectionTitle title="من المجتمع" more="المزيد" />
-        <CommunityPost data={featuredPost} />
+        <SectionTitle title="من المجتمع" more="المزيد" onMoreClick={() => navigate('/Community')} />
+        <CommunityPost data={featuredPost} onClick={() => navigate('/InsidePost/2')} />
     </section>
 
     <section className='warnSec'>

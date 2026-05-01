@@ -7,7 +7,11 @@ const ChatHistoryCard = ({ date, title, subtitle, Icon }) => {
             <div className='chatHistoryCardHeader'>
                 <span className='chatHistoryDate'>{date}</span>
                 <div className='chatHistoryIcon'>
-                    <Icon size={20} weight='fill' color='#5FA777' />
+                    {typeof Icon === 'string' ? (
+                        <img src={Icon} alt="icon" style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+                    ) : (
+                        <Icon size={20} weight='fill' color='#5FA777' />
+                    )}
                 </div>
             </div>
 

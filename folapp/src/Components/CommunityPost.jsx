@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import './CommunityPost.css';
 import { Heart, ChatCircle, BookmarkSimple } from "@phosphor-icons/react";
 
-const CommunityPost = ({ data }) => {
+const CommunityPost = ({ data, onClick }) => {
     // If the data hasn't loaded yet, return null to avoid errors
     if (!data) return null;
 
@@ -12,6 +12,7 @@ const CommunityPost = ({ data }) => {
             className="community-post-card"
             whileTap={{ scale: 0.985 }}
             transition={{ duration: 0.16, ease: "easeOut" }}
+            onClick={onClick}
         >
             {/* Header: User Info */}
             <div className="post-header">

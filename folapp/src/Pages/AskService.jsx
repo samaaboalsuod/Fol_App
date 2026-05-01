@@ -114,7 +114,7 @@ const AskService = () => {
                 </section>
 
                 <section className='chat-header'>
-                    <div className="header-right">
+                    <div className="header-right" onClick={() => navigate('/ChatHistory')}>
                         <ClockCounterClockwise size={28} color='#FAFAEA' />
                     </div>
                     <div className="header-center">

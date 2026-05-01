@@ -29,6 +29,6 @@ export const NavIcons = [
     path: "/Help",
     label: "Help",
     icon: Question,
-    activePaths: ["/Help", "/AskService"], 
+    activePaths: ["/Help", "/AskService", "/ChatHistory"], 
   },
 ];

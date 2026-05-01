@@ -15,6 +15,7 @@ import InsidePost from './Pages/InsidePost';
 import Lessons from './Pages/Lessons';
 import Settings from './Pages/Settings';
 import Notification from './Pages/Notification';
+import ChatHistory from './Pages/ChatHistory';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -42,6 +43,7 @@ const AnimatedRoutes = () => {
                     <Route path='/Lessons' element={<Lessons />} />
                     <Route path='/Settings' element={<Settings />} />
                     <Route path='/Notification' element={<Notification />} />
+                    <Route path='/ChatHistory' element={<ChatHistory />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

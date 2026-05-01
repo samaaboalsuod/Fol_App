@@ -77,7 +77,7 @@ const Notification = () => {
 
 
     return ( 
-        <main className='notification-page'>
+        <main >
 
             <TopHeader onBack={() => navigate(-1)} showLogo={true} hideShare={true} />
 

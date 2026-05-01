@@ -1,0 +1,23 @@
+.chatHistoryPage {
+    padding-bottom: 6rem;
+}
+
+.title {
+    padding: 0 2rem;
+    margin-top: 1rem;
+}
+
+.warnSec {
+    margin: 2rem 0;
+    width: 100%;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.chatHistoryCards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

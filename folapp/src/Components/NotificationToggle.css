@@ -1,0 +1,81 @@
+.notification-toggle-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.notification-toggle-row:last-child {
+    border-bottom: none;
+}
+
+.notification-toggle-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: right;
+    flex: 1;
+}
+
+.notification-toggle-text h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--lightText);
+    font-family: var(--arabicFont);
+}
+
+.notification-toggle-text p {
+    margin: 0;
+    color: rgba(250, 250, 234, 0.78);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    opacity: 0.85;
+    font-family: var(--arabicFont);
+}
+
+.notification-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.notification-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.notification-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.28);
+    transition: background-color 0.2s ease;
+}
+
+.notification-slider::before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    top: 4px;
+    border-radius: 50%;
+    background-color: #FAFAEA;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.notification-switch input:checked + .notification-slider {
+    background-color: #4A8B60;
+}
+
+.notification-switch input:checked + .notification-slider::before {
+    transform: translateX(22px);
+    background-color: #FAFAEA;
+}

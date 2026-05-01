@@ -37,15 +37,15 @@ const Settings = () => {
         <main>
             <TopHeader onBack={() => navigate(-1)} showLogo={true} hideShare={true} />
 
-            <div className='title settings-title'>
+
                 <PageTitle title={pageInfo.title} desc={pageInfo.desc} />
-            </div>
+
 
             <SearchBar placeholder='ابحث في الإعدادات...' />
 
 
                 <div className='settings-actions'>
-                    <ActionCard Icon={Bell} title='إعدادات الإشعارات' />
+                    <ActionCard Icon={Bell} title='إعدادات الإشعارات' onClick={() => navigate('/Notification')} />
                     <ActionCard Icon={Globe} title='اللغة والعرض' />
                     <ActionCard Icon={ShieldCheck} title='الخصوصية والبيانات' />
                     <ActionCard Icon={Info} title='معلومات التطبيق' />

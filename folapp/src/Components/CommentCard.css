@@ -1,0 +1,57 @@
+.comment-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.comment-item {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: .9rem;
+}
+
+.comment-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50% 50% 50% 0;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.comment-bubble {
+    flex: 1;
+    padding: .95rem 1.25rem;
+    box-sizing: border-box;
+    background: var(--cardBg);
+    border-radius: 12px 12px 0 12px;
+}
+
+.comment-bubble h4 {
+    margin: 0 0 .25rem;
+    font-family: var(--arabicFont);
+    color: var(--darkText);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.comment-bubble p {
+    margin: 0;
+    font-family: var(--arabicFont);
+    color: var(--darkText);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: .76;
+}
+
+.comment-time {
+    display: block;
+    padding-right: calc(56px + .9rem);
+    font-family: var(--arabicFont);
+    color: var(--lightText);
+    font-size: .85rem;
+    font-weight: 300;
+    opacity: .42;
+}

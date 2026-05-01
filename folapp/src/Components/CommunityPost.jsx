@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './CommunityPost.css';
 import { Heart, ChatCircle, BookmarkSimple } from "@phosphor-icons/react";
 
@@ -7,7 +8,11 @@ const CommunityPost = ({ data }) => {
     if (!data) return null;
 
     return (
-        <div className="community-post-card">
+        <motion.div
+            className="community-post-card"
+            whileTap={{ scale: 0.985 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+        >
             {/* Header: User Info */}
             <div className="post-header">
 
@@ -50,7 +55,7 @@ const CommunityPost = ({ data }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

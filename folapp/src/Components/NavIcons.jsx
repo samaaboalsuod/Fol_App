@@ -11,13 +11,13 @@ export const NavIcons = [
     path: "/MyPlants",
     label: "MyPlants",
     icon: PottedPlant,
-    activePaths: ["/MyPlants", "/PlantDetail", "/AddPlant"], 
+    activePaths: ["/MyPlants", "/PlantDetail", "/AddPlant", "/CareHistory"], 
   },
   {
     path: "/Community", 
     label: "Community",
     icon: UsersThree,
-    activePaths: ["/Community", "/PostDetails"],
+    activePaths: ["/Community", "/PostDetails", "InsidePost"],
   },
   {
     path: "/Profile",

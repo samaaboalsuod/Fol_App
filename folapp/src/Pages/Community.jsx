@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx'; 
 
 
@@ -154,7 +155,9 @@ useEffect(() => {
 
             <div className='postsSec'>
                 {featuredPosts.map((post) => (
-                  <CommunityPost key={post.id} data={post} />
+                  <Link key={post.id} to={`/InsidePost/${post.id}`} className="cardLink">
+                    <CommunityPost data={post} />
+                  </Link>
                 ))}
             </div>
         </section>

@@ -9,6 +9,7 @@ import CommunityPost from '../Components/CommunityPost';
 import CommentCard from '../Components/CommentCard';
 import WriterCard from '../Components/WriterCard';
 import Nav from '../Components/Nav';
+import AddCommentBar from '../Components/AddCommentBar';
 
 const InsidePost = () => {
     const { id } = useParams();
@@ -58,6 +59,10 @@ const InsidePost = () => {
         }
     };
 
+    const handleCommentAdded = (updatedComments) => {
+        setComments(updatedComments);
+    };
+
     return (
         <main className="inside-post-page">
             <section className='header inside-post-logo-header'>
@@ -101,6 +106,14 @@ const InsidePost = () => {
                 </>
             ) : (
                 <p className="inside-post-state">لم يتم العثور على المنشور</p>
+            )}
+
+            {post && (
+                <AddCommentBar 
+                    postId={post.id} 
+                    currentComments={comments} 
+                    onCommentAdded={handleCommentAdded} 
+                />
             )}
 
             <Nav />

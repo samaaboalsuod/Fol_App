@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx'; 
 
 
@@ -25,6 +25,7 @@ import EventCard from './../Components/EventCard';
 
 
 const Community = () => {
+    const navigate = useNavigate();
 
     const [pageInfo, setPageInfo] = useState({ title: '', desc: '' });
     const [activeFilter, setActiveFilter] = useState('الكل');
@@ -97,8 +98,23 @@ useEffect(() => {
     };
 
     const fetchLessons = async () => {
-        const { data } = await supabase.from('Lessons').select('*');
-        if (data) setLessons(data);
+        const { data } = await supabase
+            .from('Plant_Lessons')
+            .select('id, title_ar, subtitle_ar, duration_min, thumbnail_url, lesson_type, img_alt')
+            .is('plant_id', null)
+            .order('id', { ascending: true });
+
+        if (data) {
+            setLessons(data.map((lesson) => ({
+                id: lesson.id,
+                title: lesson.title_ar,
+                subtitle: lesson.subtitle_ar,
+                duration: `${lesson.duration_min} دقيقة`,
+                lesson_type: lesson.lesson_type,
+                img_url: lesson.thumbnail_url,
+                alt_text: lesson.img_alt || lesson.title_ar
+            })));
+        }
     };
 
     const fetchPopularData = async () => {
@@ -188,7 +204,7 @@ useEffect(() => {
         </section>
 
         <section className='warnSec'>
-            <SectionTitle title="أبرز الدروس"  more="كل الدروس" />
+            <SectionTitle title="أبرز الدروس" more="كل الدروس" onMoreClick={() => navigate('/Lessons')} />
             {lessons.map((lesson) => (
               <LessonCard key={lesson.id} data={lesson} />
             ))}

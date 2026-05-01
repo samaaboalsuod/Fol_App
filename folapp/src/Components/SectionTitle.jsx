@@ -9,7 +9,7 @@ const SectionTitle = (props) => {
 
             {/* This block only renders if props.more is provided */}
             {props.more && (
-                <div className='moreCont'>
+                <div className='moreCont' onClick={props.onMoreClick}>
                     <p>{props.more}</p>
                     <CaretLeft size={16} weight="bold" color="#fafaeaa8" />
                 </div>

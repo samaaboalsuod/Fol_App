@@ -12,6 +12,7 @@ import PlantDetail from './Pages/PlantDetail';
 import AddPlant from './Pages/AddPlant';
 import CareHistory from './Pages/CareHistory';
 import InsidePost from './Pages/InsidePost';
+import Lessons from './Pages/Lessons';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -36,6 +37,7 @@ const AnimatedRoutes = () => {
                     <Route path='/AddPlant' element={<AddPlant />} />
                     <Route path='/CareHistory/:id' element={<CareHistory />} />
                     <Route path='/InsidePost/:id' element={<InsidePost />} />
+                    <Route path='/Lessons' element={<Lessons />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

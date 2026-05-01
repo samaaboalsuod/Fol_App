@@ -72,15 +72,11 @@ useEffect(() => {
                     needsWater: waterCount
                 });
 
-                // 3. Calculate Health Indicators for the new card
                setHealthCounts({
-    // Using .includes ensures we catch 'ممتاز' even if there are weird hidden spaces
     excellent: data.filter(p => p['Health_Status(AR)']?.includes('ممتاز')).length,
     
-    // Catch 'جيد' or 'صحي' (Matches your current '3')
     good: data.filter(p => p['Health_Status(AR)']?.includes('صحي') || p['Health_Status(AR)']?.includes('جيد')).length,
     
-    // Catch anything that says 'تحتاج' (Needs light/water)
     needsCare: data.filter(p => p['Health_Status(AR)']?.includes('تحتاج')).length,
 });
             }
@@ -107,10 +103,10 @@ useEffect(() => {
               <img src={Logo} alt="logo" />
         </section>
 
-        <div className='title'>
+
             <PageTitle title="نباتاتي" />
             <PlantStats userId={userId} />
-        </div>
+
 
         <SearchBar placeholder="ابحث عن نباتك..." />
 

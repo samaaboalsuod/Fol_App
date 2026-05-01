@@ -154,9 +154,8 @@ useEffect(() => {
             <img src={Logo} alt="logo" />
         </section>
 
-        <div className='title'>
            <PageTitle title={pageInfo.title} desc={pageInfo.desc} />
-        </div>
+
 
         <SearchBar placeholder="ابحث عن ما تريد..." />
 

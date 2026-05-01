@@ -23,7 +23,7 @@ export const NavIcons = [
     path: "/Profile",
     label: "Profile",
     icon: User,
-    activePaths: ["/Profile", "/EditProfile", "/Settings", "/Notification"],
+    activePaths: ["/Profile", "/EditProfile", "/Settings", "/Notification", "/LanguageSettings"],
   },
   {
     path: "/Help",

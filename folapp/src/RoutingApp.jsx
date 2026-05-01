@@ -16,6 +16,7 @@ import Lessons from './Pages/Lessons';
 import Settings from './Pages/Settings';
 import Notification from './Pages/Notification';
 import ChatHistory from './Pages/ChatHistory';
+import LanguageSettings from './Pages/LanguageSettings';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -44,6 +45,7 @@ const AnimatedRoutes = () => {
                     <Route path='/Settings' element={<Settings />} />
                     <Route path='/Notification' element={<Notification />} />
                     <Route path='/ChatHistory' element={<ChatHistory />} />
+                    <Route path='/LanguageSettings' element={<LanguageSettings />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

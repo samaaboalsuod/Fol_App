@@ -46,7 +46,7 @@ const Settings = () => {
 
                 <div className='settings-actions'>
                     <ActionCard Icon={Bell} title='إعدادات الإشعارات' onClick={() => navigate('/Notification')} />
-                    <ActionCard Icon={Globe} title='اللغة والعرض' />
+                    <ActionCard Icon={Globe} title='اللغة والعرض' onClick={() => navigate('/LanguageSettings')} />
                     <ActionCard Icon={ShieldCheck} title='الخصوصية والبيانات' />
                     <ActionCard Icon={Info} title='معلومات التطبيق' />
                 </div>

@@ -1,0 +1,23 @@
+.location-option-btn {
+    background: rgba(81, 113, 66, 0.25);
+    border: 1.5px solid rgba(81, 113, 66, 0.4);
+    border-radius: 12px;
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 1.1rem 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    width: 100%;
+}
+
+.location-option-btn.selected {
+    background: rgba(81, 113, 66, 0.6);
+    border-color: #517142;
+    color: var(--lightText);
+}
+
+.location-option-btn:active {
+    transform: scale(0.97);
+}

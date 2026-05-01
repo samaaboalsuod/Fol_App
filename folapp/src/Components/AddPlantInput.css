@@ -1,0 +1,38 @@
+.add-plant-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.add-plant-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(81, 113, 66, 0.3);
+    background-color: rgba(0, 0, 0, 0.08);
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1rem;
+    box-sizing: border-box;
+    text-align: right;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.add-plant-input:focus {
+    border-color: rgba(81, 113, 66, 0.8);
+}
+
+.add-plant-input::placeholder {
+    color: rgba(8, 47, 25, 0.5); /* var(--darkText) at 50% */
+}
+
+.add-plant-subtitle {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--lowText);
+    font-family: var(--arabicFont);
+    text-align: right;
+    padding-right: 1.25rem;
+}

@@ -1,0 +1,19 @@
+.add-plant-next-btn {
+    background-color: var(--lightText);
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 50px;
+    padding: 0.8rem 2.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, background-color 0.2s;
+    min-width: 120px;
+}
+
+.add-plant-next-btn:active {
+    transform: scale(0.97);
+    background-color: #e5e5d5;
+}

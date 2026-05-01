@@ -17,6 +17,12 @@ import Settings from './Pages/Settings';
 import Notification from './Pages/Notification';
 import ChatHistory from './Pages/ChatHistory';
 import LanguageSettings from './Pages/LanguageSettings';
+import AddPlantManual1 from './Pages/AddPlantManual1';
+import AddPlantManual2 from './Pages/AddPlantManual2';
+import AddPlantManual3 from './Pages/AddPlantManual3';
+import AddPlantManual4 from './Pages/AddPlantManual4';
+import AddPlantManual5 from './Pages/AddPlantManual5';
+import AddPlantManual6 from './Pages/AddPlantManual6';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -46,6 +52,12 @@ const AnimatedRoutes = () => {
                     <Route path='/Notification' element={<Notification />} />
                     <Route path='/ChatHistory' element={<ChatHistory />} />
                     <Route path='/LanguageSettings' element={<LanguageSettings />} />
+                    <Route path='/AddPlantManual1' element={<AddPlantManual1 />} />
+                    <Route path='/AddPlantManual2' element={<AddPlantManual2 />} />
+                    <Route path='/AddPlantManual3' element={<AddPlantManual3 />} />
+                    <Route path='/AddPlantManual4' element={<AddPlantManual4 />} />
+                    <Route path='/AddPlantManual5' element={<AddPlantManual5 />} />
+                    <Route path='/AddPlantManual6' element={<AddPlantManual6 />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

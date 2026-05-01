@@ -99,6 +99,8 @@ const AddPlant = () => {
                             onClick={() => {
                                 if (method.icon_key === 'hash_code') {
                                     setIsModalOpen(true);
+                                } else if (method.icon_key === 'edit_pencil') {
+                                    navigate('/AddPlantManual1');
                                 } else {
                                     navigate(method.route_path);
                                 }

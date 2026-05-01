@@ -1,0 +1,44 @@
+.add-plant-progress-container {
+    position: relative;
+    width: 100%;
+    padding: 1.2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-line {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    right: 2rem;
+    height: 2px;
+    background-color: rgba(81, 113, 66, 0.6); /* #517142 at 60% */
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.progress-flowers {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-flower-wrap {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    filter: drop-shadow(0 0 3px rgba(81, 113, 66, 0.8));
+}
+
+.progress-flower-wrap svg {
+    width: 24px;
+    height: 24px;
+}

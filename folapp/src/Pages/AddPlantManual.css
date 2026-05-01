@@ -1,0 +1,188 @@
+.add-plant-manual-page {
+    padding-bottom: 7rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+.add-plant-manual-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    margin-top: 1rem;
+}
+
+.add-plant-card {
+    background-color: var(--cardBg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.add-plant-card-title {
+    margin: 0;
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.add-plant-manual-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Location grid - page 2 */
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+/* Light options - page 3 */
+.light-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.light-option-btn {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.06);
+    border: 1.5px solid transparent;
+    border-radius: 50px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.light-option-btn.selected {
+    background: rgba(81, 113, 66, 0.15);
+    border-color: rgba(81, 113, 66, 0.5);
+}
+
+.light-option-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    flex: 1;
+}
+
+.light-option-label {
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.light-option-desc {
+    color: var(--lowText);
+    font-family: var(--arabicFont);
+    font-size: 0.82rem;
+}
+
+.light-option-icon {
+    color: var(--darkText);
+    flex-shrink: 0;
+}
+
+/* Size options - page 4 */
+.size-options-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.size-option-btn {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.06);
+    border: 1.5px solid transparent;
+    border-radius: 16px;
+    padding: 1.25rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: var(--arabicFont);
+    font-size: 0.95rem;
+    color: var(--darkText);
+}
+
+.size-option-btn.selected {
+    background: rgba(81, 113, 66, 0.15);
+    border-color: rgba(81, 113, 66, 0.6);
+}
+
+/* Notes textarea - page 5 */
+.add-plant-textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.06);
+    border: 1.5px solid rgba(81, 113, 66, 0.2);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    font-family: var(--arabicFont);
+    font-size: 1rem;
+    color: var(--darkText);
+    text-align: right;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.add-plant-textarea::placeholder {
+    color: rgba(8, 47, 25, 0.45);
+}
+
+.add-plant-textarea:focus {
+    border-color: rgba(81, 113, 66, 0.7);
+}
+
+/* Summary rows - page 6 */
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(81, 113, 66, 0.2);
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: var(--lowText);
+    font-family: var(--arabicFont);
+    font-size: 1rem;
+}
+
+.summary-value {
+    color: var(--darkText);
+    font-family: var(--arabicFont);
+    font-size: 1.05rem;
+    font-weight: 600;
+}

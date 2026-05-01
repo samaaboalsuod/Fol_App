@@ -1,0 +1,95 @@
+.lessonPageCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--cardBg);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.04);
+}
+
+.lessonPageCard.large {
+  height: 330px;
+}
+
+.lessonPageCard.small {
+ min-height: 300px;
+}
+
+.lessonCardImage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.lessonPageCard.large .lessonCardImage {
+  height: 260px;
+}
+
+.lessonPageCard.small .lessonCardImage {
+  height: 160px;
+}
+
+.lessonCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lessonCardImage .tagCont {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin: 0;
+}
+
+.lessonCardImage .tagCont h6 {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.lessonCardBody {
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.lessonCardFooter {
+  margin-top: 0;
+}
+
+.lessonCopy h3 {
+  font-size: 1.1rem;
+  color: var(--darkText);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.lessonCopy p {
+  color: var(--lowText);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.lessonCardBody hr {
+  border: none;
+  border-top: 1px solid rgba(6, 20, 11, 0.08);
+  margin: 0;
+}
+
+.lessonCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #4A8B60;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.lessonCardFooter .tagCont {
+  margin: 0;
+}

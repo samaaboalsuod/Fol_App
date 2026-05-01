@@ -20,6 +20,20 @@
     box-sizing: border-box;
 }
 
+.lessonsCards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lessonsGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
 .popularRow{
     display: flex;
     justify-content: space-between;

@@ -17,7 +17,7 @@ export const NavIcons = [
     path: "/Community", 
     label: "Community",
     icon: UsersThree,
-    activePaths: ["/Community", "/PostDetails", "InsidePost"],
+    activePaths: ["/Community", "/PostDetails", "InsidePost", "/Lessons"],
   },
   {
     path: "/Profile",

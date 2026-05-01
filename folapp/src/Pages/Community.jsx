@@ -96,27 +96,26 @@ useEffect(() => {
 
         if (data) setAdviceList(data);
     };
-
     const fetchLessons = async () => {
         const { data } = await supabase
             .from('Plant_Lessons')
-            .select('id, title_ar, subtitle_ar, duration_min, thumbnail_url, lesson_type, img_alt')
-            .is('plant_id', null)
-            .order('id', { ascending: true });
+            .select('id, title_ar, subtitle_ar, duration_min, thumbnail_url, lesson_type, img_alt, level_tag_ar')
+            .eq('id', 8)
+            .single();
 
         if (data) {
-            setLessons(data.map((lesson) => ({
-                id: lesson.id,
-                title: lesson.title_ar,
-                subtitle: lesson.subtitle_ar,
-                duration: `${lesson.duration_min} دقيقة`,
-                lesson_type: lesson.lesson_type,
-                img_url: lesson.thumbnail_url,
-                alt_text: lesson.img_alt || lesson.title_ar
-            })));
+            setLessons([{
+                id: data.id,
+                title: data.title_ar,
+                subtitle: data.subtitle_ar,
+                duration: `${data.duration_min} دقيقة`,
+                lesson_type: data.lesson_type,
+                img_url: data.thumbnail_url,
+                alt_text: data.img_alt || data.title_ar,
+                level_tag: data.level_tag_ar
+            }]);
         }
     };
-
     const fetchPopularData = async () => {
         // Fetching by IDs based on your Plant_rows.sql file
         const { data: pothos } = await supabase.from('Plant').select('NameAR, Cover_Photo, alt').eq('id', 1).single();
@@ -203,11 +202,13 @@ useEffect(() => {
 
         </section>
 
-        <section className='warnSec'>
+        <section className='warnSec lessonsSection'>
             <SectionTitle title="أبرز الدروس" more="كل الدروس" onMoreClick={() => navigate('/Lessons')} />
-            {lessons.map((lesson) => (
-              <LessonCard key={lesson.id} data={lesson} />
-            ))}
+            <div className='lessonsCards'>
+                {lessons[0] && (
+                    <LessonCard key={lessons[0].id} data={lessons[0]} />
+                )}
+            </div>
         </section>
 
         <section className='warnSec'>

@@ -7,9 +7,9 @@ const LessonOutCard = ({ data }) => {
     // Return null if data is still loading
     if (!data) return null;
 
-    return ( 
+    return (
         <div className='lessonCard'>
-             
+
                 <div className='lessonImgCont'>
                     <img src={data.img_url} alt={data.alt_text} />
                 </div>

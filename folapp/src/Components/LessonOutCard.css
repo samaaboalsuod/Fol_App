@@ -3,18 +3,16 @@
     padding: .6rem;
     border-radius: 8px;
     background-color: var(--cardBg);
-    
     display: flex;
-    align-items: flex-start; 
+    align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
-
 }
 
 .dataCol {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     flex: 1;
     gap: .3rem;
 }

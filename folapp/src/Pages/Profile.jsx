@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../Supabase.jsx';
-import { UsersThree, Confetti, PottedPlant, Gear, ArrowLeft, SignOut } from '@phosphor-icons/react';
+import { UsersThree, Confetti, PottedPlant, Gear, SignOut } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ActionCard from '../Components/ActionCard';
 
@@ -34,7 +35,7 @@ const Profile = () => {
 
 
     const [positionIdx, setPositionIdx] = useState([0, 1, 2]);
-
+    const navigate = useNavigate();
 
     const handleSwap = () => {
         setPositionIdx((prevIdx) => prevIdx.map((prev) => (prev + 1) % 3));
@@ -209,6 +210,7 @@ useEffect(() => {
             <ActionCard 
                 Icon={Gear} 
                 title="الإعدادات" 
+                onClick={() => navigate('/Settings')}
             />
 
             <div className='logoutCard'>

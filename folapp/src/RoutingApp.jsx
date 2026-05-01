@@ -13,6 +13,7 @@ import AddPlant from './Pages/AddPlant';
 import CareHistory from './Pages/CareHistory';
 import InsidePost from './Pages/InsidePost';
 import Lessons from './Pages/Lessons';
+import Settings from './Pages/Settings';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -38,6 +39,7 @@ const AnimatedRoutes = () => {
                     <Route path='/CareHistory/:id' element={<CareHistory />} />
                     <Route path='/InsidePost/:id' element={<InsidePost />} />
                     <Route path='/Lessons' element={<Lessons />} />
+                    <Route path='/Settings' element={<Settings />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

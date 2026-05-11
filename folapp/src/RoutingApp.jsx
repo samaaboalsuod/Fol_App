@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Home from './Pages/Home';
@@ -67,19 +67,11 @@ const AnimatedRoutes = () => {
 
 
 const RoutingApp = () => {
-    return (<>
-
-
-        <BrowserRouter>
-
+    return (
+        <HashRouter>
             <AnimatedRoutes />
-
-        </BrowserRouter>
-
-
-
-
-    </>);
+        </HashRouter>
+    );
 }
 
 export default RoutingApp;

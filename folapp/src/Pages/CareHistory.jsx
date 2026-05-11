@@ -212,9 +212,9 @@ const CareHistory = () => {
         <main className="care-history-page">
             <TopHeader onBack={() => navigate(-1)} showLogo={true} hideShare={true} />
 
-            <div className="title">
+            
                 <PageTitle title={pageTitle} desc={plantName} />
-            </div>
+           
 
             <section className="model-section">
                 {loading && <p className="model-state">جاري تحميل النبات...</p>}

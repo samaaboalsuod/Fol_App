@@ -68,9 +68,8 @@ const Lessons = () => {
         <main className="lessons-page">
             <TopHeader onBack={() => navigate(-1)} showLogo={true} hideShare={true} />
 
-            <div className="title lessons-title">
                 <PageTitle title={pageInfo.title} desc={pageInfo.desc} />
-            </div>
+     
 
             <SearchBar placeholder="ابحث عن ما تريد..." />
 
